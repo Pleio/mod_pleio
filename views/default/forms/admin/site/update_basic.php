@@ -1,0 +1,46 @@
+<?php
+/**
+ * @todo cleanup
+ */
+$form_body = "";
+
+foreach (array("sitename","sitedescription", "siteemail", "default_limit") as $field) {
+    $form_body .= "<div>";
+    $form_body .= elgg_echo("installation:" . $field) . "<br />";
+    $warning = elgg_echo("installation:warning:" . $field);
+    if ($warning != "installation:warning:" . $field) {
+        echo "<b>" . $warning . "</b><br />";
+    }
+    if ($field === "siteemail") {
+        $value = elgg_get_site_entity()->email;
+    } else {
+        $value = elgg_get_config($field);
+    }
+    $form_body .= elgg_view("input/text",array("name" => $field, "value" => $value));
+    $form_body .= "</div>";
+}
+
+$form_body .= "<div>" . elgg_echo("pleio:site_permission");
+$form_body .= elgg_view("input/select", array(
+    "name" => "site_permission",
+    "value" => elgg_get_config("site_permission"),
+    "options_values" => [
+        "closed" => elgg_echo("pleio:closed"),
+        "open" => elgg_echo("pleio:open")
+    ],
+)) . "</div>";
+
+
+$languages = get_installed_translations();
+$form_body .= "<div>" . elgg_echo("installation:language");
+$form_body .= elgg_view("input/select", array(
+    "name" => "language",
+    "value" => elgg_get_config("language"),
+    "options_values" => $languages,
+)) . "</div>";
+
+$form_body .= "<div class=\"elgg-foot\">";
+$form_body .= elgg_view("input/submit", array("value" => elgg_echo("save")));
+$form_body .= "</div>";
+
+echo $form_body;

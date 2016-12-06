@@ -1,0 +1,14 @@
+{
+    "name": "pleio/pleio2",
+    "description": "The Pleio plugin for Elgg.",
+    "type": "elgg-plugin",
+    "keywords": ["elgg", "plugin", "theme"],
+    "license": "GPL-2.0",
+    "support": {
+        "source": "https://github.com/Pleio/mod_pleio2",
+        "issues": "https://github.com/Pleio/mod_pleio2/issues"
+    },
+    "require": {
+        "league/oauth2-client": "^1.4"
+    }
+}
