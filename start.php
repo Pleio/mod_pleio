@@ -1,12 +1,24 @@
 <?php
+
+spl_autoload_register("pleio_login_autoloader");
+function pleio_login_autoloader($class) {
+    $filename = "classes/" . str_replace("\\", "/", $class) . ".php";
+    if (file_exists(dirname(__FILE__) . "/" . $filename)) {
+        include($filename);
+    }
+}
+
 elgg_register_event_handler("init", "system", "pleio_init");
 
 function pleio_init() {
+    elgg_unregister_page_handler("login");
     elgg_register_page_handler("login", "pleio_login_page_handler");
-    elgg_register_page_handler("redirect", "pleio_redirect_page_handler");
+
+    elgg_unregister_action("register");
+    elgg_unregister_page_handler("register");
+    elgg_register_page_handler("register", "pleio_login_register_page_handler");
 
     elgg_register_plugin_hook_handler("action", "admin/site/update_basic", "pleio_admin_update_basic_handler");
-    elgg_register_plugin_hook_handler("route", "all", "pleio_route_handler");
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
 }
 
@@ -16,6 +28,11 @@ function pleio_login_page_handler($page) {
     $site = elgg_get_site_url();
     $code = get_input("code");
     $state = get_input("state");
+
+    if (!$CONFIG->pleio->client || !$CONFIG->pleio->secret || !$CONFIG->pleio->url) {
+        register_error(elgg_echo("pleio:not_configured"));
+        forward(REFERER);
+    }
 
     $provider = new Pleio\Provider([
         "clientId" => $CONFIG->pleio->client,
@@ -64,28 +81,18 @@ function pleio_login_page_handler($page) {
     }
 }
 
+function pleio_login_register_page_handler($page) {
+    register_error(elgg_echo("pleio:registration_disabled"));
+    forward("/");
+    return true;
+}
+
 function pleio_admin_update_basic_handler($hook, $type, $value, $params) {
     $site = elgg_get_site_entity();
 
     $site_permission = get_input("site_permission");
     if ($site_permission) {
         set_config("site_permission", $site_permission, $site->guid);
-    }
-}
-
-function pleio_route_handler($hook, $type, $value, $params) {
-    if ($type === "login") {
-        return;
-    }
-
-    $config = elgg_get_config("site_permission");
-    if ($config === "open") {
-        return;
-    }
-
-    if (!elgg_is_logged_in()) {
-        echo elgg_view_page(elgg_echo("login"), elgg_view("pleio/login"), "walled_garden");
-        return false;
     }
 }
 
