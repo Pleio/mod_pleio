@@ -12,6 +12,14 @@ $nl = array(
     "pleio:no_requests" => "Er zijn momenteel geen aanvragen.",
     "pleio:approve" => "Goedkeuren",
     "pleio:decline" => "Afwijzen",
+    "pleio:approved:subject" => "Je bent nu lid van: %s",
+    "pleio:approved:body" => "Hallo daar,
+
+je bent nu lid van: %s. Ga naar %s om direct toegang te krijgen.",
+    "pleio:declined:subject" => "Lidmaatschapsverzoek afgewezen voor: %s",
+    "pleio:declined:body" => "Hallo daar,
+
+Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien je denkt dat dit een vergissing is neem dan contact op met de site-beheerder.",
     "pleio:closed" => "Gesloten",
     "pleio:open" => "Open"
 );

@@ -12,6 +12,14 @@ $en = array(
     "pleio:no_requests" => "Currently there are no requests.",
     "pleio:approve" => "Approve",
     "pleio:decline" => "Decline",
+    "pleio:approved:subject" => "You are now member of: %s",
+    "pleio:approved:body" => "Hello there,
+
+you are now member of: %s. Go to %s and login to get access.",
+    "pleio:declined:subject" => "Membership request declined for: %s",
+    "pleio:declined:body" => "Hello there,
+
+Unfortunately the site administrator of %s decided to decline your membership request. Please contact the administrator if you think this is a mistake.",
     "pleio:closed" => "Closed",
     "pleio:open" => "Open"
 );
