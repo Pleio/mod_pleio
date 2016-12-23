@@ -1,5 +1,6 @@
 <?php
 namespace Pleio;
+use Pleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
 
 class LoginHandler {
     protected $resourceOwner;
@@ -9,9 +10,17 @@ class LoginHandler {
     }
 
     public function handleLogin() {
-        $user = get_user_by_username($this->resourceOwner->getUsername());
-        if (!$user) {
+        $user = get_user_by_username($this->resourceOwner->getGuid());
+        $allow_registration = elgg_get_config("allow_registration");
+
+        if (!$user && $allow_registration) {
             $user = $this->createUser();
+        } elseif (!$user && !$allow_registration) {
+            if ($this->resourceOwner->isAdmin()) {
+                $user = $this->createUser();
+            } else {
+                throw new ShouldRegisterException;
+            }
         }
 
         if (!$user) {
@@ -47,22 +56,26 @@ class LoginHandler {
 
             return true;
         } catch (\LoginException $e) {
-            return false;
+            throw new ShouldRegisterException;
         }
     }
 
-    private function createUser() {
-        try {
-            $guid = register_user(
-                $this->resourceOwner->getUsername(),
-                generate_random_cleartext_password(),
-                $this->resourceOwner->getName(),
-                $this->resourceOwner->getEmail()
-            );
+    public function requestAccess() {
+        $link = get_db_link("write");
+        $data = mysqli_real_escape_string($link, serialize($this->resourceOwner->toArray()));
+        $time = time();
 
-            return get_user($guid);
-        } catch (\RegistrationException $e) {
-            return false;
-        }
+        insert_data("INSERT INTO pleio_request_access (guid, user, time_created) VALUES ({$this->resourceOwner->getGuid()}, '{$data}', {$time}) ON DUPLICATE KEY UPDATE time_created = {$time}");
+    }
+
+    public function createUser() {
+        $guid = register_user(
+            $this->resourceOwner->getGuid(),
+            generate_random_cleartext_password(),
+            $this->resourceOwner->getName(),
+            $this->resourceOwner->getEmail()
+        );
+
+        return get_user($guid);
     }
 }

@@ -1,8 +1,17 @@
 <?php
 $nl = array(
+    "admin:users:access_requests" => "Aanvragen voor lidmaatschap",
     "pleio:site_permission" => "Toegangsniveau voor de site:",
     "pleio:not_configured" => "De Pleio login plugin is niet geconfigureerd.",
     "pleio:registration_disabled" => "Registratie is gedeactiveerd. Maak een account aan op Pleio.",
+    "pleio:request_access" => "Toegang aanvragen",
+    "pleio:request_access:description" => "Om toegang tot deze site te krijgen dient u toestemming te hebben van de beheerder. Vraag toestemming aan door op de knop hieronder te drukken.",
+    "pleio:access_requested" => "Toegang is aangevraagd",
+    "pleio:could_not_find" => "Kan het toegangsverzoek niet vinden.",
+    "pleio:access_requested:description" => "De toegang is aangevraagd. Je ontvangt een e-mail wanneer de toegang door de beheerder wordt toegewezen.",
+    "pleio:no_requests" => "Er zijn momenteel geen aanvragen.",
+    "pleio:approve" => "Goedkeuren",
+    "pleio:decline" => "Afwijzen",
     "pleio:closed" => "Gesloten",
     "pleio:open" => "Open"
 );
