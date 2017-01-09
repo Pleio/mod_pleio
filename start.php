@@ -19,6 +19,9 @@ function pleio_init() {
     elgg_unregister_action("register");
     elgg_unregister_page_handler("register");
 
+    elgg_unregister_action("admin/site/update_advanced");
+    elgg_register_action("admin/site/update_advanced", dirname(__FILE__) . "/actions/admin/site/update_advanced.php", "admin");
+
     elgg_register_page_handler("register", "pleio_login_register_page_handler");
     elgg_register_page_handler("access_requested", "pleio_login_access_requested_page_handler");
 
