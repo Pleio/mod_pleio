@@ -33,6 +33,9 @@ function pleio_init() {
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
 
     elgg_register_admin_menu_item("administer", "access_requests", "users");
+
+    elgg_extend_view("css/elgg", "pleio/css/site");
+    elgg_extend_view("page/elements/head", "page/elements/topbar/fix");
 }
 
 function pleio_login_page_handler($page) {
