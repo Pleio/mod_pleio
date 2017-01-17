@@ -49,8 +49,6 @@ class LoginHandler {
             if ($user->isAdmin !== $this->resourceOwner->isAdmin()) {
                 if ($this->resourceOwner->isAdmin()) {
                     $user->makeAdmin();
-                } else {
-                    $user->removeAdmin();
                 }
             }
 
