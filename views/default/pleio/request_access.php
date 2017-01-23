@@ -1,12 +1,12 @@
 <?php
+global $CONFIG;
+
 elgg_load_css('elgg.walled_garden');
 elgg_load_js('elgg.walled_garden');
 
-/**
- * Walled garden login
- */
-
 $title = elgg_get_site_entity()->name;
+$resourceOwner = elgg_extract("resourceOwner", $vars);
+
 $welcome = elgg_echo('walled_garden:welcome');
 $welcome .= ': <br/>' . $title;
 
@@ -27,6 +27,9 @@ $menu = elgg_view_menu('walled_garden', array(
     <div class="elgg-inner">
         <h2><?php echo elgg_echo("pleio:request_access"); ?></h2>
         <p><?php echo elgg_echo("pleio:request_access:description"); ?></p>
+        <p><b><?php echo elgg_echo("name"); ?></b><br><?php echo $resourceOwner["name"]; ?></p>
+        <p><b><?php echo elgg_echo("email"); ?></b><br><?php echo $resourceOwner["email"]; ?></p>
         <?php echo elgg_view_form("pleio/request_access"); ?>
+        <?php echo elgg_view("output/url", ["class" => "elgg-button elgg-button-submit", "href" => $CONFIG->pleio->url . "action/logout", "text" => elgg_echo("logout")]); ?>
     </div>
 </div>

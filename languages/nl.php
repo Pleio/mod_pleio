@@ -21,7 +21,10 @@ je bent nu lid van: %s. Ga naar %s om direct toegang te krijgen.",
 
 Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien je denkt dat dit een vergissing is neem dan contact op met de site-beheerder.",
     "pleio:closed" => "Gesloten",
-    "pleio:open" => "Open"
+    "pleio:open" => "Open",
+    "pleio:settings:idp" => "Wanneer SAML2 inloggen gebruikt wordt, vul hier de unieke ID van de SAML2 Identity Provider in",
+    "pleio:settings:login_credentials" => "Maak het ook mogelijk om in te loggen met gebruikersnaam en wachtwoord",
+    "pleio:login_with_credentials" => "Of, log in met Pleio gebruikersnaam en wachtwoord"
 );
 
 add_translation("nl", $nl);

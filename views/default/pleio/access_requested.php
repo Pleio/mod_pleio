@@ -27,5 +27,6 @@ $menu = elgg_view_menu('walled_garden', array(
     <div class="elgg-inner">
         <h2><?php echo elgg_echo("pleio:access_requested"); ?></h2>
         <p><?php echo elgg_echo("pleio:access_requested:description"); ?></p>
+        <?php echo elgg_view("output/url", ["class" => "elgg-button elgg-button-submit", "href" => $CONFIG->pleio->url . "action/logout", "text" => elgg_echo("logout")]); ?>
     </div>
 </div>

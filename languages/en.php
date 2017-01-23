@@ -21,7 +21,10 @@ you are now member of: %s. Go to %s and login to get access.",
 
 Unfortunately the site administrator of %s decided to decline your membership request. Please contact the administrator if you think this is a mistake.",
     "pleio:closed" => "Closed",
-    "pleio:open" => "Open"
+    "pleio:open" => "Open",
+    "pleio:settings:idp" => "When using SAML2 login, provide the unique ID of the SAML2 Identity Provider",
+    "pleio:settings:login_credentials" => "Allow to login with credentials as well",
+    "pleio:login_with_credentials" => "Or, login using credentials"
 );
 
 add_translation("en", $en);
