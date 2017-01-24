@@ -22,6 +22,13 @@ function pleio_init() {
     elgg_unregister_action("logout");
     elgg_register_action("logout", dirname(__FILE__) . "/actions/logout.php", "public");
 
+    elgg_unregister_action("avatar/crop");
+    elgg_unregister_action("avatar/remove");
+    elgg_unregister_action("avatar/upload");
+    elgg_unregister_action("user/passwordreset");
+    elgg_unregister_action("user/requestnewpassword");
+    elgg_unregister_plugin_hook_handler("usersettings:save", "user", "users_settings_save");
+
     elgg_unregister_action("admin/site/update_advanced");
     elgg_register_action("admin/site/update_advanced", dirname(__FILE__) . "/actions/admin/site/update_advanced.php", "admin");
 
@@ -87,12 +94,19 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
         return $value;
     }
 
-    if ($entity->iconUrl) {
-        $value = $entity->iconUrl;
-        if ($size) {
-            $value .= "&size={$size}";
-        }
+    if (!in_array($size, ["large", "medium", "small", "tiny", "master", "topbar"])) {
+        $size = "medium";
     }
 
-    return $value;
+    $url = $CONFIG->pleio->url . "mod/profile/icondirect.php?guid={$entity->username}&size={$size}";
+
+    if ($entity->last_login) {
+        $url .= "&lastcache={$entity->last_login}";
+    }
+
+    return $url;
+}
+
+function pleio_login_users_settings_save() {
+    elgg_set_user_default_access();
 }

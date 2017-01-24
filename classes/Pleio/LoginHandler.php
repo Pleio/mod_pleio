@@ -42,15 +42,13 @@ class LoginHandler {
                 $user->language = $this->resourceOwner->getLanguage();
             }
 
-            if ($user->iconUrl !== $this->resourceOwner->getIcon()) {
-                $user->iconUrl = $this->resourceOwner->getIcon();
-            }
-
             if ($user->isAdmin !== $this->resourceOwner->isAdmin()) {
                 if ($this->resourceOwner->isAdmin()) {
                     $user->makeAdmin();
                 }
             }
+
+            $user->save();
 
             return true;
         } catch (\LoginException $e) {
