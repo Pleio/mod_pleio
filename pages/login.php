@@ -7,7 +7,7 @@ $code = get_input("code");
 $state = get_input("state");
 
 $login_credentials = get_input("login_credentials");
-$idp = elgg_get_plugin_setting("idp", "pleio_login");
+$idp = elgg_get_plugin_setting("idp", "pleio");
 
 if (!$CONFIG->pleio->client || !$CONFIG->pleio->secret || !$CONFIG->pleio->url) {
     register_error(elgg_echo("pleio:not_configured"));

@@ -3,14 +3,14 @@
 	line-height: 1.4em;
 	color: white;
 	text-decoration: none;
-	background: transparent url('/mod/pleio_login/_graphics/logo.png');
+	background: transparent url('/mod/pleio/_graphics/logo.png');
 	width: 64px;
 	height: 26px;
 	display: block;
 }
 
 .elgg-page-topbar {
-	background: white url('/mod/pleio_login/_graphics/topbar.png') repeat-x bottom left;
+	background: white url('/mod/pleio/_graphics/topbar.png') repeat-x bottom left;
 	border-bottom: 1px solid #BDBDBD;
 	height: 28px;
 	z-index: 2;

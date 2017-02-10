@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . "/../../vendor/autoload.php");
-spl_autoload_register("pleio_login_autoloader");
-function pleio_login_autoloader($class) {
+spl_autoload_register("pleio_autoloader");
+function pleio_autoloader($class) {
     $filename = "classes/" . str_replace("\\", "/", $class) . ".php";
     if (file_exists(dirname(__FILE__) . "/" . $filename)) {
         include($filename);
@@ -14,7 +14,7 @@ elgg_register_event_handler("init", "system", "pleio_init");
 
 function pleio_init() {
     elgg_unregister_page_handler("login");
-    elgg_register_page_handler("login", "pleio_login_page_handler");
+    elgg_register_page_handler("login", "pleio_page_handler");
 
     elgg_unregister_action("register");
     elgg_unregister_page_handler("register");
@@ -32,13 +32,13 @@ function pleio_init() {
     elgg_unregister_action("admin/site/update_advanced");
     elgg_register_action("admin/site/update_advanced", dirname(__FILE__) . "/actions/admin/site/update_advanced.php", "admin");
 
-    elgg_register_page_handler("register", "pleio_login_register_page_handler");
-    elgg_register_page_handler("access_requested", "pleio_login_access_requested_page_handler");
+    elgg_register_page_handler("register", "pleio_register_page_handler");
+    elgg_register_page_handler("access_requested", "pleio_access_requested_page_handler");
 
     elgg_register_action("pleio/request_access", dirname(__FILE__) . "/actions/request_access.php", "public");
     elgg_register_action("admin/pleio/process_access", dirname(__FILE__) . "/actions/admin/process_access.php", "admin");
 
-    elgg_register_plugin_hook_handler("public_pages", "walled_garden", "pleio_login_public_pages_handler");
+    elgg_register_plugin_hook_handler("public_pages", "walled_garden", "pleio_public_pages_handler");
     elgg_register_plugin_hook_handler("action", "admin/site/update_basic", "pleio_admin_update_basic_handler");
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
 
@@ -48,11 +48,11 @@ function pleio_init() {
     elgg_extend_view("page/elements/head", "page/elements/topbar/fix");
 }
 
-function pleio_login_page_handler($page) {
+function pleio_page_handler($page) {
     include(dirname(__FILE__) . "/pages/login.php");
 }
 
-function pleio_login_access_requested_page_handler($page) {
+function pleio_access_requested_page_handler($page) {
     $body = elgg_view_layout("walled_garden", [
         "content" => elgg_view("pleio/access_requested"),
         "class" => "elgg-walledgarden-double",
@@ -63,7 +63,7 @@ function pleio_login_access_requested_page_handler($page) {
     return true;
 }
 
-function pleio_login_register_page_handler($page) {
+function pleio_register_page_handler($page) {
     register_error(elgg_echo("pleio:registration_disabled"));
     forward("/");
     return true;
@@ -78,7 +78,7 @@ function pleio_admin_update_basic_handler($hook, $type, $value, $params) {
     }
 }
 
-function pleio_login_public_pages_handler($hook, $type, $value, $params) {
+function pleio_public_pages_handler($hook, $type, $value, $params) {
     $value[] = "action/pleio/request_access";
     $value[] = "access_requested";
     return $value;
@@ -107,6 +107,6 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
     return $url;
 }
 
-function pleio_login_users_settings_save() {
+function pleio_users_settings_save() {
     elgg_set_user_default_access();
 }

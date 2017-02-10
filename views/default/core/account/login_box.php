@@ -2,7 +2,7 @@
 
 $module = elgg_extract('module', $vars, 'aside');
 $title = elgg_extract('title', $vars, elgg_echo('login'));
-$login_credentials = elgg_get_plugin_setting("login_credentials", "pleio_login");
+$login_credentials = elgg_get_plugin_setting("login_credentials", "pleio");
 
 $body = elgg_view("output/url", array(
         "href" => "/login",
