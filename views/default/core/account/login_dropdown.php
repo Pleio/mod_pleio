@@ -9,9 +9,5 @@ if (elgg_is_logged_in()) {
 ?>
 
 <div id="login-dropdown">
-    <?php echo elgg_view("output/url", array(
-        "href" => "/login",
-        "class" => "elgg-button elgg-button-dropdown",
-        "text" => elgg_echo("login")
-    )); ?>
+    <?php echo elgg_view_form("login"); ?>
 </div>
