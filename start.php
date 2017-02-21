@@ -110,3 +110,17 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
 function pleio_users_settings_save() {
     elgg_set_user_default_access();
 }
+
+function get_user_by_pleio_guid($guid) {
+    $guid = (int) $guid;
+    if (!$guid) {
+        return false;
+    }
+
+    $result = get_data_row("SELECT guid FROM elgg_users_entity WHERE pleio_guid = {$guid}");
+    if ($result) {
+        return get_entity($result->guid);
+    }
+
+    return false;
+}

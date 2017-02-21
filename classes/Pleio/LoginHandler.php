@@ -10,7 +10,7 @@ class LoginHandler {
     }
 
     public function handleLogin() {
-        $user = get_user_by_username($this->resourceOwner->getGuid());
+        $user = get_user_by_pleio_guid($this->resourceOwner->getGuid());
         $allow_registration = elgg_get_config("allow_registration");
 
         if (!$user && $allow_registration) {
@@ -65,13 +65,21 @@ class LoginHandler {
     }
 
     public function createUser() {
+        $pleio_guid = (int) $this->resourceOwner->getGuid();
+
         $guid = register_user(
-            $this->resourceOwner->getGuid(),
+            $this->resourceOwner->getUsername(),
             generate_random_cleartext_password(),
             $this->resourceOwner->getName(),
             $this->resourceOwner->getEmail()
         );
 
-        return get_user($guid);
+        if ($guid) {
+            update_data("UPDATE elgg_users_entity SET pleio_guid = {$pleio_guid} WHERE guid={$guid}");
+
+            return get_user($guid);
+        }
+
+        return false;
     }
 }
