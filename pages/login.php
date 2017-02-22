@@ -1,6 +1,10 @@
 <?php
 global $CONFIG;
 
+if (elgg_is_logged_in()) {
+    forward("/");
+}
+
 $site = elgg_get_site_url();
 
 $code = get_input("code");
