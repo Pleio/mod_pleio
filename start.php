@@ -98,7 +98,17 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
         $size = "medium";
     }
 
-    $url = $CONFIG->pleio->url . "mod/profile/icondirect.php?guid={$entity->username}&size={$size}";
+    $dbprefix = elgg_get_config("dbprefix");
+    $guid = (int) $entity->guid;
+
+    $result = get_data_row("SELECT pleio_guid FROM {$dbprefix}users_entity WHERE guid = $guid");
+    if ($result) {
+        $pleio_guid = $result->pleio_guid;
+    } else {
+        $pleio_guid = 0;
+    }
+
+    $url = $CONFIG->pleio->url . "mod/profile/icondirect.php?guid={$pleio_guid}&size={$size}";
 
     if ($entity->last_login) {
         $url .= "&lastcache={$entity->last_login}";
@@ -117,7 +127,8 @@ function get_user_by_pleio_guid($guid) {
         return false;
     }
 
-    $result = get_data_row("SELECT guid FROM elgg_users_entity WHERE pleio_guid = {$guid}");
+    $dbprefix = elgg_get_config("dbprefix");
+    $result = get_data_row("SELECT guid FROM {$dbprefix}users_entity WHERE pleio_guid = {$guid}");
     if ($result) {
         return get_entity($result->guid);
     }
