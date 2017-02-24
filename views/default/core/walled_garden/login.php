@@ -1,21 +1,17 @@
 <?php
-elgg_load_css('elgg.walled_garden');
-elgg_load_js('elgg.walled_garden');
+$site = elgg_get_site_entity();
 
-/**
- * Walled garden login
- */
-
-$title = elgg_get_site_entity()->name;
-$welcome = elgg_echo('walled_garden:welcome');
-$welcome .= ': <br/>' . $title;
+$welcome = elgg_echo("pleio:walled_garden", [$site->name]);
 
 $menu = elgg_view_menu('walled_garden', array(
     'sort_by' => 'priority',
     'class' => 'elgg-menu-general elgg-menu-hz',
 ));
 
-$login_box = elgg_view('core/account/login_box', array('module' => 'walledgarden-login'));
+$login_box = elgg_view('core/account/login_box', array(
+    "module" => "walledgarden-login",
+    "description" => elgg_echo("pleio:walled_garden_description")
+));
 
 echo <<<HTML
 <div class="elgg-col elgg-col-1of2">

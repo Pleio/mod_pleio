@@ -4,6 +4,8 @@ $en = array(
     "pleio:site_permission" => "Permission of the site:",
     "pleio:not_configured" => "The Pleio login plugin is not configured.",
     "pleio:registration_disabled" => "Registration is disabled, create an account on Pleio.",
+    "pleio:walled_garden" => "Welcome to %s",
+    "pleio:walled_garden_description" => "Access to this site is restricted to users. Log in to access the site or request membership.",
     "pleio:request_access" => "Request access",
     "pleio:request_access:description" => "To enter this site, you must request access from the admin. Click the button to request access.",
     "pleio:change_settings" => "Change settings",
@@ -25,6 +27,8 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:closed" => "Closed",
     "pleio:open" => "Open",
     "pleio:settings:idp" => "When using SAML2 login, provide the unique ID of the SAML2 Identity Provider",
+    "pleio:settings:idp_name" => "Identity Provider display name",
+    "pleio:settings:login_through" => "Login through %s",
     "pleio:settings:login_credentials" => "Allow to login with credentials as well",
     "pleio:login_with_credentials" => "Or, login using credentials"
 );

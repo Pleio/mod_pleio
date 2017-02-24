@@ -31,7 +31,11 @@ class AccessRequest {
                 $this->remove();
                 $this->sendEmail(
                     elgg_echo("pleio:approved:subject", [$site->name]), 
-                    elgg_echo("pleio:approved:body", [$site->name, $site->url])
+                    elgg_echo("pleio:approved:body", [
+                        $site->name,
+                        $site->url,
+                        $site->url . "notifications/personal/" . $user->username
+                    ])
                 );
                 return true;
             }

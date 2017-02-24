@@ -7,7 +7,18 @@ echo elgg_view("input/text", array(
     "name" => "params[idp]",
     "value" => $plugin->idp
 ));
-echo "</label></p>";
+echo "</label>";
+echo "</p>";
+
+echo "<p>";
+echo "<label>" . elgg_echo("pleio:settings:idp_name") . "<br />";
+echo elgg_view("input/text", array(
+    "name" => "params[idp_name]",
+    "value" => $plugin->idp_name
+));
+echo "</label>";
+echo "</p>";
+
 
 echo "<p>";
 echo "<label>" . elgg_echo("pleio:settings:login_credentials") . "<br />";
@@ -19,4 +30,5 @@ echo elgg_view("input/dropdown", array(
     ],
     "value" => $plugin->login_credentials
 ));
-echo "</label></p>";
+echo "</label>";
+echo "</p>";
