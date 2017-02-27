@@ -46,6 +46,7 @@ function pleio_init() {
 
     elgg_extend_view("css/elgg", "pleio/css/site");
     elgg_extend_view("page/elements/head", "page/elements/topbar/fix");
+    elgg_extend_view("page/elements/foot", "page/elements/stats");
 }
 
 function pleio_page_handler($page) {
