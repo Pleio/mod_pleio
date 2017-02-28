@@ -8,9 +8,14 @@ $menu = elgg_view_menu('walled_garden', array(
     'class' => 'elgg-menu-general elgg-menu-hz',
 ));
 
+$description = elgg_get_plugin_setting("walled_garden_description", "pleio");
+if (!$description) {
+    $description = elgg_echo("pleio:walled_garden_description");
+}
+
 $login_box = elgg_view('core/account/login_box', array(
     "module" => "walledgarden-login",
-    "description" => elgg_echo("pleio:walled_garden_description")
+    "description" => $description
 ));
 
 echo <<<HTML

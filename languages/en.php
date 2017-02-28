@@ -30,7 +30,8 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:settings:idp_name" => "Identity Provider display name",
     "pleio:settings:login_through" => "Login through %s",
     "pleio:settings:login_credentials" => "Allow to login with credentials as well",
-    "pleio:login_with_credentials" => "Or, login using credentials"
+    "pleio:settings:walled_garden_description" => "Description on login page of closed site",
+    "pleio:login_with_credentials" => "Or, login using credentials",
 );
 
 add_translation("en", $en);

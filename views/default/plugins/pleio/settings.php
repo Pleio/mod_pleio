@@ -32,3 +32,12 @@ echo elgg_view("input/dropdown", array(
 ));
 echo "</label>";
 echo "</p>";
+
+echo "<p>";
+echo "<label>" . elgg_echo("pleio:settings:walled_garden_description") . "<br />";
+echo elgg_view("input/longtext", array(
+    "name" => "params[walled_garden_description]",
+    "value" => $plugin->walled_garden_description ? $plugin->walled_garden_description : elgg_echo("pleio:walled_garden_description")
+));
+echo "</label>";
+echo "</p>";
