@@ -4,14 +4,10 @@ $entity = $vars["entity"];
 $icon = elgg_view("icon/default", ["entity" => $entity, "size" => "small"]);
 $title = $entity->user["name"];
 
-$date = elgg_view_friendly_time($entity->time_created);
-
-$subtitle = "$date";
-
 $params = array(
     "entity" => $vars["entity"],
-    "title" => $title,
-    "subtitle" => $subtitle,
+    "title" => $entity->user["name"],
+    "subtitle" => elgg_view("entity/components/subtitle", ["entity" => $vars["entity"]]),
     "metadata" => elgg_view("entity/components/process_access", ["entity" => $vars["entity"]])
 );
 
