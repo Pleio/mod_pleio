@@ -32,6 +32,7 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:settings:login_credentials" => "Allow to login with credentials as well",
     "pleio:settings:walled_garden_description" => "Description on login page of closed site",
     "pleio:login_with_credentials" => "Or, login using credentials",
+    "pleio:is_banned" => "Unfortunately, your account is banned. Please contact the site administrator.",
 );
 
 add_translation("en", $en);

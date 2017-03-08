@@ -1,6 +1,7 @@
 <?php
 namespace Pleio;
 use Pleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
+use Pleio\Exceptions\CouldNotLoginException as CouldNotLoginException;
 
 class LoginHandler {
     protected $resourceOwner;
@@ -52,7 +53,7 @@ class LoginHandler {
 
             return true;
         } catch (\LoginException $e) {
-            throw new ShouldRegisterException;
+            throw new CouldNotLoginException;
         }
     }
 

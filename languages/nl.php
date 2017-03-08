@@ -31,7 +31,8 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:settings:login_through" => "Inloggen via %s",
     "pleio:settings:login_credentials" => "Maak het ook mogelijk om in te loggen met gebruikersnaam en wachtwoord",
     "pleio:settings:walled_garden_description" => "Beschrijving op de loginpagina (bij een gesloten site)",
-    "pleio:login_with_credentials" => "Of, log in met Pleio gebruikersnaam en wachtwoord"
+    "pleio:login_with_credentials" => "Of, log in met Pleio gebruikersnaam en wachtwoord",
+    "pleio:is_banned" => "Helaas, je account is geblokkeerd. Neem contact op met de deelsitebeheerder.",
 );
 
 add_translation("nl", $nl);

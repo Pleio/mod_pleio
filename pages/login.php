@@ -63,6 +63,9 @@ if (!isset($code)) {
             $loginHandler->handleLogin();
             system_message(elgg_echo("loginok"));
             forward("/");
+        } catch (Pleio\Exceptions\CouldNotLoginException $e) {
+            register_error(elgg_echo("pleio:is_banned"));
+            forward("/");
         } catch (Pleio\Exceptions\ShouldRegisterException $e) {
             $_SESSION["pleio_resource_owner"] = $resourceOwner->toArray();
             $body = elgg_view_layout("walled_garden", [
