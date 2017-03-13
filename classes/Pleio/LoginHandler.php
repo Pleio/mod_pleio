@@ -43,7 +43,7 @@ class LoginHandler {
                 $user->language = $this->resourceOwner->getLanguage();
             }
 
-            if ($user->isAdmin !== $this->resourceOwner->isAdmin()) {
+            if ($user->isAdmin() !== $this->resourceOwner->isAdmin()) {
                 if ($this->resourceOwner->isAdmin()) {
                     $user->makeAdmin();
                 }
