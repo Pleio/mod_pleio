@@ -8,8 +8,6 @@ function pleio_autoloader($class) {
     }
 }
 
-use Pleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
-
 elgg_register_event_handler("init", "system", "pleio_init");
 
 function pleio_init() {
@@ -27,6 +25,15 @@ function pleio_init() {
     elgg_unregister_action("avatar/upload");
     elgg_unregister_action("user/passwordreset");
     elgg_unregister_action("user/requestnewpassword");
+    elgg_unregister_action("admin/user/delete");
+    elgg_unregister_action("admin/user/resetpassword");
+    
+    elgg_unregister_menu_item("page", "users:unvalidated");
+    elgg_unregister_menu_item("page", "users:add");
+    elgg_unregister_action("useradd");
+
+    elgg_register_plugin_hook_handler("register", "menu:user_hover", "pleio_user_hover_menu");
+
     elgg_unregister_plugin_hook_handler("usersettings:save", "user", "users_settings_save");
 
     elgg_unregister_action("admin/site/update_advanced");
@@ -116,6 +123,16 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
     }
 
     return $url;
+}
+
+function pleio_user_hover_menu($hook, $type, $items, $params) {
+    foreach ($items as $key => $item) {
+        if (in_array($item->getName(), ["resetpassword", "delete"])) {
+            unset($items[$key]);
+        }
+    }
+
+    return $items;
 }
 
 function pleio_users_settings_save() {
