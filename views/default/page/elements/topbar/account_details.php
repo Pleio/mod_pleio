@@ -15,12 +15,12 @@
 		));
 		echo "<br />";
 		
-		$unread = messages_count_unread();
-		if (!$unread) {
-			$unread = 0;
-		}
-
 		if (elgg_is_active_plugin("messages")) {
+			$unread = messages_count_unread();
+			if (!$unread) {
+				$unread = 0;
+			}
+
 			echo elgg_view("output/url", array(
 				"href" => "/messages/inbox/" . $user->username,
 				"text" => elgg_echo("messages:inbox") . " [" . $unread . "]",
