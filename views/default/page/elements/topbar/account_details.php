@@ -15,10 +15,15 @@
 		));
 		echo "<br />";
 		
+		$unread = messages_count_unread();
+		if (!$unread) {
+			$unread = 0;
+		}
+
 		if (elgg_is_active_plugin("messages")) {
 			echo elgg_view("output/url", array(
 				"href" => "/messages/inbox/" . $user->username,
-				"text" => elgg_echo("messages:inbox") . " [" . messages_count_unread() . "]",
+				"text" => elgg_echo("messages:inbox") . " [" . $unread . "]",
 				"title" => elgg_echo("messages:unreadcount", array(messages_count_unread())),
 				"is_trusted" => true
 			));
@@ -71,18 +76,7 @@
 			));
 			echo "<br />";
 		}
-		
-		if (elgg_is_active_plugin("messages")) {
-			// personalized activity
-			echo elgg_view("output/url", array(
-				"href" => "/activity/notifications",
-				"text" => elgg_echo("subsite_manager:account:dropdown:advanced_notifictions"),
-				"title" => elgg_echo("advanced_notifications:activity:notifications:info"),
-				"is_trusted" => true
-			));
-			echo "<br />";
-		}
-		
+
 		echo elgg_view("output/url", array(
 			"href" => "/settings/user/" . $user->username,
 			"text" => elgg_echo("settings"),
