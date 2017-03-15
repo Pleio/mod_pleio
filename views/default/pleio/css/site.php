@@ -1,11 +1,12 @@
-.subsite-manager-topbar-logo {
+.pleio-logo {
 	font-size: 0em;
-	line-height: 1.4em;
 	color: white;
 	text-decoration: none;
-	background: transparent url('/mod/pleio/_graphics/logo.png');
-	width: 64px;
-	height: 26px;
+	background: transparent url('/mod/pleio/_graphics/logo-grey.svg');
+	background-position: center; 
+	background-repeat: no-repeat;
+	height: 28px;
+	width: 70px;
 	display: block;
 }
 
@@ -18,6 +19,11 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+}
+
+.elgg-page-topbar-container {
+	width: 1010px;
+	margin: 0 auto;
 }
 
 .elgg-page-topbar > .elgg-inner {

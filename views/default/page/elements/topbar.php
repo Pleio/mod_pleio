@@ -14,15 +14,13 @@ if (elgg_is_active_plugin("rijkshuisstijl")) {
 	$site = elgg_get_site_entity();
 	$site_name = $site->name;
 	$site_url = elgg_get_site_url();
-		
-	echo "<h1>";
+
 	echo elgg_view("output/url", array(
 		"text" => $site->name, 
 		"title" => $site->name,
-		"href" => $site->url, 
-		"class"=> "subsite-manager-topbar-logo"
+		"href" => "https://www.pleio.nl/",
+		"class"=> "pleio-logo"
 	));
-	echo "</h1>";
 
 	echo elgg_view("search/search_box");
 	echo elgg_view("page/elements/topbar/account");
