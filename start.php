@@ -25,7 +25,6 @@ function pleio_init() {
     elgg_unregister_action("avatar/upload");
     elgg_unregister_action("user/passwordreset");
     elgg_unregister_action("user/requestnewpassword");
-    elgg_unregister_action("admin/user/delete");
     elgg_unregister_action("admin/user/resetpassword");
     
     elgg_unregister_menu_item("page", "users:unvalidated");
@@ -127,7 +126,7 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
 
 function pleio_user_hover_menu($hook, $type, $items, $params) {
     foreach ($items as $key => $item) {
-        if (in_array($item->getName(), ["resetpassword", "delete"])) {
+        if (in_array($item->getName(), ["resetpassword"])) {
             unset($items[$key]);
         }
     }
