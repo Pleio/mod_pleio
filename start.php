@@ -138,6 +138,24 @@ function pleio_users_settings_save() {
     elgg_set_user_default_access();
 }
 
+function pleio_is_valid_returnto($url) {
+    $site_url = parse_url(elgg_get_site_url());
+    $returnto_url = parse_url($url);
+
+    if (!$site_url || !$returnto_url) {
+        return false;
+    }
+    if ($site_url["scheme"] !== $returnto_url["scheme"]) {
+        return false;
+    }
+
+    if ($site_url["host"] !== $returnto_url["host"]) {
+        return false;
+    }
+
+    return true;
+}
+
 function get_user_by_pleio_guid($guid) {
     $guid = (int) $guid;
     if (!$guid) {

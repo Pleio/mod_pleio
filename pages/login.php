@@ -9,6 +9,7 @@ $site = elgg_get_site_url();
 
 $code = get_input("code");
 $state = get_input("state");
+$returnto = urldecode(get_input("returnto"));
 
 $login_credentials = get_input("login_credentials");
 $idp = elgg_get_plugin_setting("idp", "pleio");
@@ -22,7 +23,7 @@ $provider = new Pleio\Provider([
     "clientId" => $CONFIG->pleio->client,
     "clientSecret" => $CONFIG->pleio->secret,
     "url" => $CONFIG->pleio->url,
-    "redirectUri" => "{$site}login"
+    "redirectUri" => $returnto ? "{$site}login?returnto=" . urlencode($returnto) : "{$site}login"
 ]);
 
 if (!isset($code)) {
@@ -62,7 +63,12 @@ if (!isset($code)) {
         try {
             $loginHandler->handleLogin();
             system_message(elgg_echo("loginok"));
-            forward("/");
+
+            if ($returnto && pleio_is_valid_returnto($returnto)) {
+                forward($returnto);
+            } else {
+                forward("/");
+            }
         } catch (Pleio\Exceptions\CouldNotLoginException $e) {
             register_error(elgg_echo("pleio:is_banned"));
             forward("/");
