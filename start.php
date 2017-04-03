@@ -25,8 +25,11 @@ function pleio_init() {
     elgg_unregister_action("avatar/upload");
     elgg_unregister_action("user/passwordreset");
     elgg_unregister_action("user/requestnewpassword");
-    elgg_unregister_action("admin/user/resetpassword");
     
+    elgg_unregister_action("admin/user/resetpassword");
+    elgg_unregister_action("admin/user/delete");
+    elgg_register_action("admin/user/delete", dirname(__FILE__) . "/actions/admin/user/delete.php", "admin");    
+
     elgg_unregister_menu_item("page", "users:unvalidated");
     elgg_unregister_menu_item("page", "users:add");
     elgg_unregister_action("useradd");
