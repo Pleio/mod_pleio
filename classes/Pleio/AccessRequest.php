@@ -62,7 +62,7 @@ class AccessRequest {
     }
 
     private function remove() {
-        //return delete_data("DELETE FROM pleio_request_access WHERE id = {$this->id}");
+        return delete_data("DELETE FROM pleio_request_access WHERE id = {$this->id}");
     }
 
     private function sendEmail($subject, $body, $params = null) {
