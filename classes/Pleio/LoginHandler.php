@@ -58,8 +58,16 @@ class LoginHandler {
     }
 
     public function requestAccess() {
+        $data = $this->resourceOwner->toArray();
+
+        $data["profile"] = [];
+        $fields = pleio_get_required_profile_fields();
+        foreach ($fields as $field) {
+            $data["profile"][$field->metadata_name] = get_input("custom_profile_fields_{$field->metadata_name}");
+        }
+
         $link = get_db_link("write");
-        $data = mysqli_real_escape_string($link, serialize($this->resourceOwner->toArray()));
+        $data = mysqli_real_escape_string($link, serialize($data));
         $time = time();
 
         insert_data("INSERT INTO pleio_request_access (guid, user, time_created) VALUES ({$this->resourceOwner->getGuid()}, '{$data}', {$time}) ON DUPLICATE KEY UPDATE time_created = {$time}");
@@ -77,6 +85,13 @@ class LoginHandler {
 
         if ($guid) {
             update_data("UPDATE elgg_users_entity SET pleio_guid = {$pleio_guid} WHERE guid={$guid}");
+
+            $profile = $this->resourceOwner->getProfile();
+            if (is_array($profile)) {
+                foreach ($this->resourceOwner->getProfile() as $name => $value) {
+                    create_metadata($guid, $name, $value, "", $guid);
+                }
+            }
 
             return get_user($guid);
         }

@@ -41,6 +41,10 @@ class ResourceOwner extends GenericResourceOwner {
         return $this->getValueByKey($this->response, "url");
     }
 
+    public function getProfile() {
+        return $this->getValueByKey($this->response, "profile");
+    }
+
     public function isAdmin() {
         return $this->getValueByKey($this->response, "isAdmin");
     }

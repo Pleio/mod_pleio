@@ -170,3 +170,26 @@ function get_user_by_pleio_guid($guid) {
 
     return false;
 }
+
+function pleio_get_required_profile_fields() {
+    if (!elgg_is_active_plugin("profile_manager")) {
+        return [];
+    }
+
+    $result = profile_manager_get_categorized_fields(null, true, true, true, $profile_type_guid);
+
+    if (empty($result["categories"])) {
+        return [];
+    }
+
+    $return = [];
+    foreach ($result["categories"] as $category_guid => $category) {
+        foreach ($result["fields"][$category_guid] as $field) {
+            if ($field->show_on_register == "yes" && $field->mandatory == "yes") {
+                $return[] = $field;
+            }
+        }
+    }
+
+    return $return;
+}

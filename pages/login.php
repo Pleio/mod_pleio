@@ -88,6 +88,7 @@ if (!isset($code)) {
             forward("/");
         }
     } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-        exit($e->getMessage());
+        register_error($e->getMessage());
+        forward("/");
     }
 }
