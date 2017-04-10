@@ -23,7 +23,7 @@ $provider = new Pleio\Provider([
     "clientId" => $CONFIG->pleio->client,
     "clientSecret" => $CONFIG->pleio->secret,
     "url" => $CONFIG->pleio->url,
-    "redirectUri" => $returnto ? "{$site}login?returnto=" . urlencode($returnto) : "{$site}login"
+    "redirectUri" => $returnto ? "{$site}login?returnto={$returnto}" : "{$site}login"
 ]);
 
 if (!isset($code)) {
