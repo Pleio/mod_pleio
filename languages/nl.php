@@ -1,6 +1,7 @@
 <?php
 $nl = array(
     "admin:users:access_requests" => "Aanvragen voor lidmaatschap",
+    "admin:users:import" => "Importeer gebruikers",
     "pleio:site_permission" => "Toegangsniveau voor de site:",
     "pleio:not_configured" => "De Pleio login plugin is niet geconfigureerd.",
     "pleio:registration_disabled" => "Registratie is gedeactiveerd. Maak een account aan op Pleio.",
@@ -33,6 +34,17 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:settings:walled_garden_description" => "Beschrijving op de loginpagina (bij een gesloten site)",
     "pleio:login_with_credentials" => "Of, log in met Pleio gebruikersnaam en wachtwoord",
     "pleio:is_banned" => "Helaas, je account is geblokkeerd. Neem contact op met de deelsitebeheerder.",
+    "pleio:imported" => "%s gebruikers zijn aangemaakt, %s gebruikers zijn vernieuwd. Er was een probleem met het importeren van %s gebruikers.",
+    "pleio:users_import:step1:description" => "Met deze functionaliteit kun je gebruikers importeren door middel van een CSV bestand. Kies het CSV bestand in de eerste stap. Het CSV bestand dient een kopregel te bevatten met de veldnamen. Zorg er verder voor dat de velden gescheiden zijn door een puntkomma ;. Het toegangsniveau van de site zal ingesteld worden op het standaard site toegangsniveau.",
+    "pleio:users_import:step1:file" => "CSV-bestand",
+    "pleio:continue" => "Ga naar de volgende stap",
+    "pleio:users_import:step1:success" => "CSV-bestand succesvol ingelezen.",
+    "pleio:users_import:step1:error" => "Er is een fout opgetreden tijdens het lezen van het CSV-bestand. Controleer het bestand en probeer het opnieuw.",
+    "pleio:users_import:choose_field" => "Kies een veld",
+    "pleio:users_import:source_field" => "Bronveld",
+    "pleio:users_import:target_field" => "Doelveld",
+    "pleio:users_import:step2:description" => "Link nu de bronvelden uit het CSV-bestand aan de doelvelden in dit platform. Wanneer je niet bestaande gebruikers zou willen aanmaken, zorg er dan voor dat er tenminste een voor- en achternaam en emailadres aanwezig is. Wanneer deze velden niet geselecteerd worden, zullen alleen reeds bestaande accounts vernieuwd worden. Het systeem controleert of een gebruiker reeds bestaat door eerst te kijken naar het guid veld, daarna naar de gebruikersnaam en daarna naar het e-mailadres.",
+    "pleio:users_import:sample" => "voorbeeld"
 );
 
 add_translation("nl", $nl);

@@ -1,6 +1,7 @@
 <?php
 $en = array(
     "admin:users:access_requests" => "Access requests",
+    "admin:users:import" => "Import users",
     "pleio:site_permission" => "Permission of the site:",
     "pleio:not_configured" => "The Pleio login plugin is not configured.",
     "pleio:registration_disabled" => "Registration is disabled, create an account on Pleio.",
@@ -33,6 +34,17 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:settings:walled_garden_description" => "Description on login page of closed site",
     "pleio:login_with_credentials" => "Or, login using credentials",
     "pleio:is_banned" => "Unfortunately, your account is banned. Please contact the site administrator.",
+    "pleio:imported" => "Imported %s users, updated %s users and an error occured while importing for %s users.",
+    "pleio:users_import:step1:description" => "This functionality allows you to import users using a CSV file. Please choose the CSV file in the first step. Make sure the first line of the CSV contains the field names and the fields are delimited by a semicolon ;. The permissionlevel of the fields will be set to the default site level.",
+    "pleio:users_import:step2:description" => "Please link the source fields in the CSV file to the target fields in this platform. Make sure that users within the platform are ",
+    "pleio:users_import:choose_field" => "Choose a field",
+    "pleio:users_import:source_field" => "Source field",
+    "pleio:users_import:target_field" => "Target field",
+    "pleio:users_import:step1:file" => "CSV file",
+    "pleio:users_import:step1:file" => "Continue to the next step",
+    "pleio:users_import:step1:success" => "CSV is uploaded succesfully",
+    "pleio:users_import:step1:error" => "There was an error while uploading the CSV file. Please check the file and try again.",
+    "pleio:users_import:sample" => "sample"
 );
 
 add_translation("en", $en);

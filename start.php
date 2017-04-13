@@ -53,6 +53,10 @@ function pleio_init() {
 
     elgg_register_admin_menu_item("administer", "access_requests", "users");
 
+    elgg_register_admin_menu_item("administer", "import", "users");
+    elgg_register_action("admin/user/import_step1", dirname(__FILE__) . "/actions/admin/user/import_step1.php", "admin");
+    elgg_register_action("admin/user/import_step2", dirname(__FILE__) . "/actions/admin/user/import_step2.php", "admin");
+
     elgg_extend_view("css/elgg", "pleio/css/site");
     elgg_extend_view("page/elements/head", "page/elements/topbar/fix");
     elgg_extend_view("page/elements/foot", "page/elements/stats");
