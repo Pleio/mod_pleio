@@ -2,6 +2,29 @@
 namespace Pleio;
 
 class Helpers {
+    public static function generateUsername($username) {
+        $hidden = access_show_hidden_entities(true);
+
+        while (strlen($username) < 4) {
+            $username .= "0";
+        }
+
+        if (get_user_by_username($username)) {
+            $i = 1;
+
+            while (get_user_by_username($username . $i)) {
+                $i++;
+            }
+
+            $result = $username . $i;
+        } else {
+            $result = $username;
+        }
+
+        access_show_hidden_entities($hidden);
+        return $result;
+    }
+
     public static function removeUser(\ElggUser $user) {
         if (!$user || !$user instanceof \ElggUser) {
             return false;

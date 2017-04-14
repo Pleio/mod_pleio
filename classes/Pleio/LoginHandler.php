@@ -95,7 +95,7 @@ class LoginHandler {
         $pleio_guid = (int) $this->resourceOwner->getGuid();
 
         $guid = register_user(
-            $this->resourceOwner->getUsername(),
+            Helpers::generateUsername($this->resourceOwner->getUsername()),
             generate_random_cleartext_password(),
             $this->resourceOwner->getName(),
             $this->resourceOwner->getEmail()
