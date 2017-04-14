@@ -50,7 +50,6 @@ function pleio_init() {
     elgg_register_plugin_hook_handler("public_pages", "walled_garden", "pleio_public_pages_handler");
     elgg_register_plugin_hook_handler("action", "admin/site/update_basic", "pleio_admin_update_basic_handler");
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
-    elgg_register_plugin_hook_handler("profile:fields", "profile", "pleio_profile_fields_override");
 
     elgg_register_admin_menu_item("administer", "access_requests", "users");
 
@@ -130,13 +129,6 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
     }
 
     return $url;
-}
-
-function pleio_profile_fields_override($hook, $type, $value, $params) {
-    $value["gender"] = "radio";
-    $value["phone"] = "text";
-    $value["mobile"] = "text";
-    return $value;
 }
 
 function pleio_user_hover_menu($hook, $type, $items, $params) {

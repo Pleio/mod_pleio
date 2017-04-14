@@ -43,13 +43,6 @@ class LoginHandler {
                 $user->language = $this->resourceOwner->getLanguage();
             }
 
-            $profile = $this->resourceOwner->getProfile();
-            foreach(["gender", "phone", "mobile"] as $key) {
-                if ($profile[$key] !== $user->$key) {
-                    $user->$key = $profile[$key];
-                }
-            }
-
             if ($user->isAdmin() !== $this->resourceOwner->isAdmin()) {
                 if ($this->resourceOwner->isAdmin()) {
                     $user->makeAdmin();
@@ -67,7 +60,7 @@ class LoginHandler {
     public function requestAccess() {
         $data = $this->resourceOwner->toArray();
 
-        $data["profile"] = $this->resourceOwner->getProfile();
+        $data["profile"] = [];
         $fields = pleio_get_required_profile_fields();
         foreach ($fields as $field) {
             $data["profile"][$field->metadata_name] = get_input("custom_profile_fields_{$field->metadata_name}");
