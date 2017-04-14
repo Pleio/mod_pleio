@@ -17,6 +17,12 @@ $nl = array(
     "pleio:no_requests" => "Er zijn momenteel geen aanvragen.",
     "pleio:approve" => "Goedkeuren",
     "pleio:decline" => "Afwijzen",
+    "pleio:admin:access_request:subject" => "Nieuwe toegangsaanvraag voor %s",
+    "pleio:admin:access_request:body" => "Beste %s,
+        Iemand met de naam %s heeft toegang aangevraagd tot %s.
+        Ga naar de volgende link om de aanvraag te bekijken:
+
+        %s",
     "pleio:approved:subject" => "Je hebt nu toegang tot: %s",
     "pleio:approved:body" => "Beste gebruiker,
 
