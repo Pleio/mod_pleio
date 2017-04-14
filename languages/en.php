@@ -44,7 +44,8 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:users_import:step1:file" => "Continue to the next step",
     "pleio:users_import:step1:success" => "CSV is uploaded succesfully",
     "pleio:users_import:step1:error" => "There was an error while uploading the CSV file. Please check the file and try again.",
-    "pleio:users_import:sample" => "sample"
+    "pleio:users_import:sample" => "sample",
+    "profile:gender" => "Gender"
 );
 
 add_translation("en", $en);

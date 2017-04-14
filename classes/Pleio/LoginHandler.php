@@ -11,7 +11,7 @@ class LoginHandler {
     }
 
     public function handleLogin() {
-        $user = get_user_by_pleio_guid($this->resourceOwner->getGuid());
+        $user = get_user_by_pleio_guid_or_email($this->resourceOwner->getGuid(), $this->resourceOwner->getEmail());
         $allow_registration = elgg_get_config("allow_registration");
 
         if (!$user && $allow_registration) {
@@ -41,6 +41,13 @@ class LoginHandler {
 
             if ($user->language !== $this->resourceOwner->getLanguage()) {
                 $user->language = $this->resourceOwner->getLanguage();
+            }
+
+            $profile = $this->resourceOwner->getProfile();
+            foreach(["gender", "phone", "mobile"] as $key) {
+                if ($profile[$key] !== $user->$key) {
+                    $user->$key = $profile[$key];
+                }
             }
 
             if ($user->isAdmin() !== $this->resourceOwner->isAdmin()) {

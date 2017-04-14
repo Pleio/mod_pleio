@@ -44,7 +44,8 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:users_import:source_field" => "Bronveld",
     "pleio:users_import:target_field" => "Doelveld",
     "pleio:users_import:step2:description" => "Link nu de bronvelden uit het CSV-bestand aan de doelvelden in dit platform. Wanneer je niet bestaande gebruikers zou willen aanmaken, zorg er dan voor dat er tenminste een voor- en achternaam en emailadres aanwezig is. Wanneer deze velden niet geselecteerd worden, zullen alleen reeds bestaande accounts vernieuwd worden. Het systeem controleert of een gebruiker reeds bestaat door eerst te kijken naar het guid veld, daarna naar de gebruikersnaam en daarna naar het e-mailadres.",
-    "pleio:users_import:sample" => "voorbeeld"
+    "pleio:users_import:sample" => "voorbeeld",
+    "profile:gender" => "Geslacht"
 );
 
 add_translation("nl", $nl);

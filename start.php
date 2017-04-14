@@ -50,6 +50,7 @@ function pleio_init() {
     elgg_register_plugin_hook_handler("public_pages", "walled_garden", "pleio_public_pages_handler");
     elgg_register_plugin_hook_handler("action", "admin/site/update_basic", "pleio_admin_update_basic_handler");
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
+    elgg_register_plugin_hook_handler("profile:fields", "profile", "pleio_profile_fields_override");
 
     elgg_register_admin_menu_item("administer", "access_requests", "users");
 
@@ -131,6 +132,13 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
     return $url;
 }
 
+function pleio_profile_fields_override($hook, $type, $value, $params) {
+    $value["gender"] = "radio";
+    $value["phone"] = "text";
+    $value["mobile"] = "text";
+    return $value;
+}
+
 function pleio_user_hover_menu($hook, $type, $items, $params) {
     foreach ($items as $key => $item) {
         if (in_array($item->getName(), ["resetpassword"])) {
@@ -163,15 +171,26 @@ function pleio_is_valid_returnto($url) {
     return true;
 }
 
-function get_user_by_pleio_guid($guid) {
+function get_user_by_pleio_guid_or_email($guid, $email) {
     $guid = (int) $guid;
     if (!$guid) {
+        return false;
+    }
+
+    $email = sanitize_string($email);
+    if (!$email) {
         return false;
     }
 
     $dbprefix = elgg_get_config("dbprefix");
     $result = get_data_row("SELECT guid FROM {$dbprefix}users_entity WHERE pleio_guid = {$guid}");
     if ($result) {
+        return get_entity($result->guid);
+    }
+
+    $result = get_data_row("SELECT guid FROM {$dbprefix}users_entity WHERE email = '{$email}'");
+    if ($result) {
+        update_data("UPDATE elgg_users_entity SET pleio_guid = {$guid} WHERE guid={$result->guid}");
         return get_entity($result->guid);
     }
 
