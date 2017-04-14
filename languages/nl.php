@@ -17,6 +17,7 @@ $nl = array(
     "pleio:no_requests" => "Er zijn momenteel geen aanvragen.",
     "pleio:approve" => "Goedkeuren",
     "pleio:decline" => "Afwijzen",
+    "pleio:settings:notifications_for_access_request" => "Stuur alle beheerders een notificatie wanneer iemand toegang aanvraagt voor de deelsite",
     "pleio:admin:access_request:subject" => "Nieuwe toegangsaanvraag voor %s",
     "pleio:admin:access_request:body" => "Beste %s,
         Iemand met de naam %s heeft toegang aangevraagd tot %s.

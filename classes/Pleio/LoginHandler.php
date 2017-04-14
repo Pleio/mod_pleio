@@ -79,20 +79,22 @@ class LoginHandler {
 
         insert_data("INSERT INTO pleio_request_access (guid, user, time_created) VALUES ({$this->resourceOwner->getGuid()}, '{$data}', {$time}) ON DUPLICATE KEY UPDATE time_created = {$time}");
 
-        $site = elgg_get_site_entity();
-        $admins = elgg_get_admins();
-        foreach ($admins as $admin) {
-            notify_user(
-                $admin->guid,
-                $site->guid,
-                elgg_echo("pleio:admin:access_request:subject", [$site->name]),
-                elgg_echo("pleio:admin:access_request:body", [
-                    $admin->name,
-                    $this->resourceOwner->getName(),
-                    $site->name,
-                    "{$site->url}admin/users/access_requests"
-                ])
-            );
+        if (elgg_get_plugin_setting("notifications_for_access_request", "pleio") !== "no") {
+            $site = elgg_get_site_entity();
+            $admins = elgg_get_admins();
+            foreach ($admins as $admin) {
+                notify_user(
+                    $admin->guid,
+                    $site->guid,
+                    elgg_echo("pleio:admin:access_request:subject", [$site->name]),
+                    elgg_echo("pleio:admin:access_request:body", [
+                        $admin->name,
+                        $this->resourceOwner->getName(),
+                        $site->name,
+                        "{$site->url}admin/users/access_requests"
+                    ])
+                );
+            }
         }
     }
 

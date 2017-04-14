@@ -17,6 +17,7 @@ $en = array(
     "pleio:no_requests" => "Currently there are no requests.",
     "pleio:approve" => "Approve",
     "pleio:decline" => "Decline",
+    "pleio:settings:notifications_for_access_request" => "Send all admins a notification when somebody requests access to the site",
     "pleio:admin:access_request:subject" => "New access request for %s",
     "pleio:admin:access_request:body" => "Hello %s,
         Somebody with the name %s has performed an access request to %s.

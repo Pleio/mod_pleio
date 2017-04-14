@@ -34,6 +34,20 @@ echo "</label>";
 echo "</p>";
 
 echo "<p>";
+echo "<label>" . elgg_echo("pleio:settings:notifications_for_access_request") . "<br />";
+echo elgg_view("input/dropdown", array(
+    "name" => "params[notifications_for_access_request]",
+    "options_values" => [
+        "yes" => elgg_echo("option:yes"),
+        "no" => elgg_echo("option:no")
+    ],
+    "value" => $plugin->notifications_for_access_request
+));
+echo "</label>";
+echo "</p>";
+
+
+echo "<p>";
 echo "<label>" . elgg_echo("pleio:settings:walled_garden_description") . "<br />";
 echo elgg_view("input/longtext", array(
     "name" => "params[walled_garden_description]",
