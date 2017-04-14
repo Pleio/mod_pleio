@@ -42,7 +42,11 @@ class ResourceOwner extends GenericResourceOwner {
     }
 
     public function getProfile() {
-        return $this->getValueByKey($this->response, "profile");
+        if (is_array($this->getValueByKey($this->response, "profile"))) {
+            return $this->getValueByKey($this->response, "profile");
+        }
+
+        return [];
     }
 
     public function isAdmin() {

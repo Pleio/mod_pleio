@@ -67,7 +67,7 @@ class LoginHandler {
     public function requestAccess() {
         $data = $this->resourceOwner->toArray();
 
-        $data["profile"] = [];
+        $data["profile"] = $this->resourceOwner->getProfile();
         $fields = pleio_get_required_profile_fields();
         foreach ($fields as $field) {
             $data["profile"][$field->metadata_name] = get_input("custom_profile_fields_{$field->metadata_name}");
