@@ -42,8 +42,6 @@ class Import {
 
         $hidden = access_show_hidden_entities(true);
 
-        var_dump($name);
-
         if (get_user_by_username($name)) {
             $i = 1;
 
@@ -67,9 +65,9 @@ class Import {
         if ($data["guid"]) {
             $user = get_entity($data["guid"]);
         } elseif ($data["username"]) {
-            $user = get_entity_by_username($data["username"]);
+            $user = get_user_by_username($data["username"]);
         } elseif ($data["email"]) {
-            $users = get_entity_by_email($data["email"]);
+            $users = get_user_by_email($data["email"]);
             $user = $users[0];
         }
 
