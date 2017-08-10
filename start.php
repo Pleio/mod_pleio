@@ -25,10 +25,10 @@ function pleio_init() {
     elgg_unregister_action("avatar/upload");
     elgg_unregister_action("user/passwordreset");
     elgg_unregister_action("user/requestnewpassword");
-    
+
     elgg_unregister_action("admin/user/resetpassword");
     elgg_unregister_action("admin/user/delete");
-    elgg_register_action("admin/user/delete", dirname(__FILE__) . "/actions/admin/user/delete.php", "admin");    
+    elgg_register_action("admin/user/delete", dirname(__FILE__) . "/actions/admin/user/delete.php", "admin");
 
     elgg_unregister_menu_item("page", "users:unvalidated");
     elgg_unregister_menu_item("page", "users:add");
@@ -78,8 +78,7 @@ function pleio_access_requested_page_handler($page) {
 }
 
 function pleio_register_page_handler($page) {
-    register_error(elgg_echo("pleio:registration_disabled"));
-    forward("/");
+    forward("/login");
     return true;
 }
 
