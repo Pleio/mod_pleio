@@ -151,12 +151,18 @@ function pleio_is_valid_returnto($url) {
     if (!$site_url || !$returnto_url) {
         return false;
     }
-    if ($site_url["scheme"] !== $returnto_url["scheme"]) {
-        return false;
-    }
 
-    if ($site_url["host"] !== $returnto_url["host"]) {
-        return false;
+    // check returnto is relative or absolute
+    if (!$returnto_url["host"] && $returnto_url["path"]) {
+        return true;
+    } else {
+        if ($site_url["scheme"] !== $returnto_url["scheme"]) {
+            return false;
+        }
+
+        if ($site_url["host"] !== $returnto_url["host"]) {
+            return false;
+        }
     }
 
     return true;
