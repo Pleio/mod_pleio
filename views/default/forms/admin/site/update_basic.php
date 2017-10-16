@@ -2,6 +2,8 @@
 /**
  * @todo cleanup
  */
+
+ global $CONIG;
 $form_body = "";
 
 foreach (array('sitename','sitedescription', 'siteemail') as $field) {
@@ -13,6 +15,13 @@ foreach (array('sitename','sitedescription', 'siteemail') as $field) {
     }
     $value = elgg_get_config($field);
     $form_body .= elgg_view("input/text",array('name' => $field, 'value' => $value));
+
+	if ($field === 'siteemail' && $CONFIG->email_from) {
+		$form_body .= '<div class="elgg-subtext">';
+		$form_body .= elgg_echo('pleio:settings:email_from', [$CONFIG->email_from[1]]);
+		$form_body .= '</div>';
+	}
+
     $form_body .= "</div>";
 }
 

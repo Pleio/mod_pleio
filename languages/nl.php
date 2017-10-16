@@ -34,6 +34,7 @@ Je hebt nu toegang tot: %s. Ga naar %s om de site verder te ontdekken. Op de sit
 Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien je denkt dat dit een vergissing is neem dan contact op met de site-beheerder.",
     "pleio:closed" => "Gesloten",
     "pleio:open" => "Open",
+    "pleio:settings:email_from" => "Wanneer dit niet ingesteld is, wordt mail verstuurd vanaf %s.",
     "pleio:settings:idp" => "Wanneer SAML2 inloggen gebruikt wordt, vul hier de unieke ID van de SAML2 Identity Provider in",
     "pleio:settings:idp_name" => "Identity Provider weergavenaam",
     "pleio:settings:login_through" => "Inloggen via %s",
