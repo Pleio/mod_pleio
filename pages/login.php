@@ -19,7 +19,7 @@ if (!$CONFIG->pleio->client || !$CONFIG->pleio->secret || !$CONFIG->pleio->url) 
     forward(REFERER);
 }
 
-$provider = new Pleio\Provider([
+$provider = new ModPleio\Provider([
     "clientId" => $CONFIG->pleio->client,
     "clientSecret" => $CONFIG->pleio->secret,
     "url" => $CONFIG->pleio->url,
@@ -58,7 +58,7 @@ if (!isset($code)) {
         */
 
         $resourceOwner = $provider->getResourceOwner($accessToken);
-        $loginHandler = new Pleio\LoginHandler($resourceOwner);
+        $loginHandler = new ModPleio\LoginHandler($resourceOwner);
 
         try {
             $loginHandler->handleLogin();
@@ -69,10 +69,10 @@ if (!isset($code)) {
             } else {
                 forward("/");
             }
-        } catch (Pleio\Exceptions\CouldNotLoginException $e) {
+        } catch (ModPleio\Exceptions\CouldNotLoginException $e) {
             register_error(elgg_echo("pleio:is_banned"));
             forward("/");
-        } catch (Pleio\Exceptions\ShouldRegisterException $e) {
+        } catch (ModPleio\Exceptions\ShouldRegisterException $e) {
             $_SESSION["pleio_resource_owner"] = $resourceOwner->toArray();
             $body = elgg_view_layout("walled_garden", [
                 "content" => elgg_view("pleio/request_access", [

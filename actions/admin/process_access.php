@@ -2,7 +2,7 @@
 $id = (int) get_input("id");
 $result = get_input("result");
 
-$accessRequests = new Pleio\AccessRequests();
+$accessRequests = new ModPleio\AccessRequests();
 $accessRequest = $accessRequests->get($id);
 
 if (!$accessRequest) {

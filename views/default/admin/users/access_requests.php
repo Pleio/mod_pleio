@@ -1,5 +1,5 @@
 <?php
-$accessRequests = new Pleio\AccessRequests();
+$accessRequests = new ModPleio\AccessRequests();
 
 $limit = (int) get_input("limit", 20);
 $offset = (int) get_input("offset", 0);

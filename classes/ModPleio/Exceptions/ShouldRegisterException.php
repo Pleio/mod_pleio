@@ -1,5 +1,5 @@
 <?php
-namespace Pleio\Exceptions;
+namespace ModPleio\Exceptions;
 
 class ShouldRegisterException extends \Exception {
 }

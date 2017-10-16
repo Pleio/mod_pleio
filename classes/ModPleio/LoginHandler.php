@@ -1,7 +1,7 @@
 <?php
-namespace Pleio;
-use Pleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
-use Pleio\Exceptions\CouldNotLoginException as CouldNotLoginException;
+namespace ModPleio;
+use ModPleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
+use ModPleio\Exceptions\CouldNotLoginException as CouldNotLoginException;
 
 class LoginHandler {
     protected $resourceOwner;

@@ -40,11 +40,11 @@ while (($data = fgetcsv($fh, 0, ";")) !== false) {
         continue;
     }
 
-    $data = Pleio\Import::extractData($columns, $data);
+    $data = ModPleio\Import::extractData($columns, $data);
 
-    $user = Pleio\Import::getUserByAttributes($data);
+    $user = ModPleio\Import::getUserByAttributes($data);
     if (!$user) {
-        $user = Pleio\Import::registerUser($data);
+        $user = ModPleio\Import::registerUser($data);
         if ($user) {
             $stats["created"] += 1;
         } else {

@@ -1,5 +1,5 @@
 <?php
-namespace Pleio;
+namespace ModPleio;
 
 class Helpers {
     public static function generateUsername($username) {

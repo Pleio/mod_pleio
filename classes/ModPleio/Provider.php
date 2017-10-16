@@ -1,5 +1,5 @@
 <?php
-namespace Pleio;
+namespace ModPleio;
 
 use InvalidArgumentException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;

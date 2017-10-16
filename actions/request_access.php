@@ -13,8 +13,8 @@ foreach ($fields as $field) {
     }
 }
 
-$resourceOwner = new Pleio\ResourceOwner($_SESSION["pleio_resource_owner"]);
-$loginHandler = new Pleio\LoginHandler($resourceOwner);
+$resourceOwner = new ModPleio\ResourceOwner($_SESSION["pleio_resource_owner"]);
+$loginHandler = new ModPleio\LoginHandler($resourceOwner);
 $loginHandler->requestAccess();
 
 forward("/access_requested");

@@ -1,5 +1,5 @@
 <?php
-namespace Pleio;
+namespace ModPleio;
 
 class Import {
     public function extractData($columns, $data) {

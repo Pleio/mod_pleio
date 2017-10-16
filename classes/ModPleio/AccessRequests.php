@@ -1,5 +1,5 @@
 <?php
-namespace Pleio;
+namespace ModPleio;
 
 class AccessRequests {
     function count() {

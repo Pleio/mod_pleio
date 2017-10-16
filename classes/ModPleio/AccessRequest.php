@@ -1,5 +1,5 @@
 <?php
-namespace Pleio;
+namespace ModPleio;
 
 class AccessRequest {
     public function __construct($data) {

@@ -23,7 +23,7 @@ $username = $user->username;
 $dbprefix = elgg_get_config("dbprefix");
 
 if (($user instanceof ElggUser) && ($user->canEdit())) {
-    $result = Pleio\Helpers::removeUser($user);
+    $result = ModPleio\Helpers::removeUser($user);
 
     if ($result) {
         system_message(elgg_echo('admin:user:delete:yes', array($name)));
