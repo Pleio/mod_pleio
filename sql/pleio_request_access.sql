@@ -5,5 +5,3 @@ CREATE TABLE IF NOT EXISTS pleio_request_access (
     `time_created` INT(11) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
-
-ALTER TABLE elgg_users_entity ADD `pleio_guid` BIGINT(20);
