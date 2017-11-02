@@ -187,7 +187,7 @@ function get_user_by_pleio_guid_or_email($guid, $email) {
 
     $result = get_data_row("SELECT guid FROM {$dbprefix}users_entity WHERE email = '{$email}'");
     if ($result) {
-        update_data("UPDATE elgg_users_entity SET pleio_guid = {$guid} WHERE guid={$result->guid}");
+        update_data("UPDATE {$dbprefix}users_entity SET pleio_guid = {$guid} WHERE guid={$result->guid}");
         return get_entity($result->guid);
     }
 

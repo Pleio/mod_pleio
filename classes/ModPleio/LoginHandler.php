@@ -101,8 +101,10 @@ class LoginHandler {
             $this->resourceOwner->getEmail()
         );
 
+        $db_prefix = elgg_get_config('dbprefix');
+        
         if ($guid) {
-            update_data("UPDATE elgg_users_entity SET pleio_guid = {$pleio_guid} WHERE guid={$guid}");
+            update_data("UPDATE {$db_prefix}users_entity SET pleio_guid = {$pleio_guid} WHERE guid={$guid}");
 
             $profile = $this->resourceOwner->getProfile();
             if (is_array($profile)) {
