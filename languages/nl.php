@@ -9,11 +9,15 @@ $nl = array(
     "pleio:walled_garden_description" => "Toegang tot deze site is gelimiteerd tot geautoriseerde gebruikers. Log in om toegang te krijgen of toegang aan te vragen.",
     "pleio:request_access" => "Toegang aanvragen",
     "pleio:request_access:description" => "Om toegang tot deze site te krijgen dient u toestemming te hebben van de beheerder. Vraag toestemming aan door op de knop hieronder te drukken.",
+    "pleio:validate_access" => "Toegang valideren",
+    "pleio:validate_access:description" => "Met jouw e-mailadres krijg je direct toegang tot deze website. Controleer je gegevens en vraag toegang aan. Je ontvangt een e-mail waarmee je direct toegang krijgt tot de site.",
+    "pleio:validate_access:error" => "Er is iets mis gegaan tijdens het valideren. Probeer het opnieuw.",
     "pleio:change_settings" => "Instellingen aanpassen",
     "pleio:change_settings:description" => "Om instellingen aan te passen, ga naar %s. Wanneer je de instellingen hebt aangepast, log opnieuw in om de wijzigingen door te voeren.",
     "pleio:access_requested" => "Toegang is aangevraagd",
     "pleio:could_not_find" => "Kan het toegangsverzoek niet vinden.",
-    "pleio:access_requested:description" => "De toegang is aangevraagd. Je ontvangt een e-mail wanneer de toegang door de beheerder wordt toegewezen.",
+    "pleio:access_requested:wait_for_approval" => "De toegang is aangevraagd. Je ontvangt een e-mail wanneer de toegang door de beheerder wordt toegewezen.",
+    "pleio:access_requested:check_email" => "Controleer je e-mail en volg de link om je account direct te activeren.",
     "pleio:no_requests" => "Er zijn momenteel geen aanvragen.",
     "pleio:approve" => "Goedkeuren",
     "pleio:decline" => "Afwijzen",
@@ -25,11 +29,11 @@ $nl = array(
 
         %s",
     "pleio:approved:subject" => "Je hebt nu toegang tot: %s",
-    "pleio:approved:body" => "Beste gebruiker,
+    "pleio:approved:body" => "Beste %s,
 
 Je hebt nu toegang tot: %s. Ga naar %s om de site verder te ontdekken. Op de site gebeuren allerlei activiteiten waarvan je een melding in je eigen mailbox kunt ontvangen. Om je aan te melden ga naar deze link: %s. Hier kun je instellen welke meldingen je precies wilt ontvangen.",
     "pleio:declined:subject" => "Lidmaatschapsverzoek afgewezen voor: %s",
-    "pleio:declined:body" => "Hallo daar,
+    "pleio:declined:body" => "Beste %s,
 
 Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien je denkt dat dit een vergissing is neem dan contact op met de site-beheerder.",
     "pleio:closed" => "Gesloten",
@@ -53,7 +57,15 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:users_import:target_field" => "Doelveld",
     "pleio:users_import:step2:description" => "Link nu de bronvelden uit het CSV-bestand aan de doelvelden in dit platform. Wanneer je niet bestaande gebruikers zou willen aanmaken, zorg er dan voor dat er tenminste een voor- en achternaam en emailadres aanwezig is. Wanneer deze velden niet geselecteerd worden, zullen alleen reeds bestaande accounts vernieuwd worden. Het systeem controleert of een gebruiker reeds bestaat door eerst te kijken naar het guid veld, daarna naar de gebruikersnaam en daarna naar het e-mailadres.",
     "pleio:users_import:sample" => "voorbeeld",
-    "profile:gender" => "Geslacht"
+    "profile:gender" => "Geslacht",
+    "pleio:settings:domain_whitelist" => "Geef deze domeinen direct toegang tot de site",
+    "pleio:settings:domain_whitelist:explanation" => "Je kunt hier een komma-gescheiden lijst toevoegen, bijv. voorbeeld.nl, voorbeeld2.nl",
+    "pleio:validation_email:subject" => "Valideer je e-mailadres voor %s",
+    "pleio:validation_email:body" => "Beste %s,
+
+    Je hebt toegang aangevraagd voor %s. Volg deze link om direct toegang te krijgen:
+
+    %s"
 );
 
 add_translation("nl", $nl);

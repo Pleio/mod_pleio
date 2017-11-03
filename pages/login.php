@@ -31,7 +31,7 @@ if (!isset($code)) {
     $_SESSION["oauth2state"] = $provider->getState();
 
     $header = "Location: " . $authorizationUrl;
-    
+
     if ($idp && $login_credentials !== "true") {
         $header .= "&idp={$idp}";
     }
@@ -73,14 +73,26 @@ if (!isset($code)) {
             register_error(elgg_echo("pleio:is_banned"));
             forward("/");
         } catch (ModPleio\Exceptions\ShouldRegisterException $e) {
+            if (ModPleio\Helpers::emailInWhitelist($resourceOwner->getEmail())) {
+                $title = elgg_echo("pleio:validate_access");
+                $description = elgg_echo("pleio:validate_access:description");
+            } else {
+                $title = elgg_echo("pleio:request_access");
+                $description = elgg_echo("pleio:request_access:description");
+            }
+
             $_SESSION["pleio_resource_owner"] = $resourceOwner->toArray();
+
             $body = elgg_view_layout("walled_garden", [
                 "content" => elgg_view("pleio/request_access", [
+                    "title" => $title,
+                    "description" => $description,
                     "resourceOwner" => $resourceOwner->toArray()
                 ]),
                 "class" => "elgg-walledgarden-double",
                 "id" => "elgg-walledgarden-login"
             ]);
+
             echo elgg_view_page(elgg_echo("pleio:request_access"), $body, "walled_garden");
             return true;
         } catch (\RegistrationException $e) {

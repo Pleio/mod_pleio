@@ -1,6 +1,7 @@
 <?php
 namespace ModPleio;
 use ModPleio\Exceptions\ShouldRegisterException as ShouldRegisterException;
+use ModPleio\Exceptions\ShouldValidateException as ShouldValidateException;
 use ModPleio\Exceptions\CouldNotLoginException as CouldNotLoginException;
 
 class LoginHandler {
@@ -14,13 +15,15 @@ class LoginHandler {
         $user = get_user_by_pleio_guid_or_email($this->resourceOwner->getGuid(), $this->resourceOwner->getEmail());
         $allow_registration = elgg_get_config("allow_registration");
 
-        if (!$user && $allow_registration) {
-            $user = $this->createUser();
-        } elseif (!$user && !$allow_registration) {
-            if ($this->resourceOwner->isAdmin()) {
+        if (!$user) {
+            if ($allow_registration) {
                 $user = $this->createUser();
             } else {
-                throw new ShouldRegisterException;
+                if ($this->resourceOwner->isAdmin()) {
+                    $user = $this->createUser();
+                } else {
+                    throw new ShouldRegisterException;
+                }
             }
         }
 
@@ -57,7 +60,7 @@ class LoginHandler {
         }
     }
 
-    public function requestAccess() {
+    public function requestAccess($notify_admin = true) {
         $data = $this->resourceOwner->toArray();
 
         $data["profile"] = [];
@@ -70,9 +73,9 @@ class LoginHandler {
         $data = mysqli_real_escape_string($link, serialize($data));
         $time = time();
 
-        insert_data("INSERT INTO pleio_request_access (guid, user, time_created) VALUES ({$this->resourceOwner->getGuid()}, '{$data}', {$time}) ON DUPLICATE KEY UPDATE time_created = {$time}");
+        $result = insert_data("INSERT INTO pleio_request_access (guid, user, time_created) VALUES ({$this->resourceOwner->getGuid()}, '{$data}', {$time}) ON DUPLICATE KEY UPDATE time_created = {$time}");
 
-        if (elgg_get_plugin_setting("notifications_for_access_request", "pleio") !== "no") {
+        if (elgg_get_plugin_setting("notifications_for_access_request", "pleio") !== "no" && $notify_admin) {
             $site = elgg_get_site_entity();
             $admins = elgg_get_admins();
             foreach ($admins as $admin) {
@@ -89,6 +92,42 @@ class LoginHandler {
                 );
             }
         }
+
+        if ($result) {
+            $this->requestId = $result;
+        }
+
+        return $result;
+    }
+
+    public function sendValidationEmail() {
+        if (!$this->requestId) {
+            return;
+        }
+
+        $site = elgg_get_site_entity();
+
+        return elgg_send_email(
+            Helpers::getSiteEmail(),
+            $this->resourceOwner->getEmail(),
+            elgg_echo("pleio:validation_email:subject", [$site->name]),
+            elgg_echo("pleio:validation_email:body", [
+                $this->resourceOwner->getName(),
+                $site->name,
+                $this->getValidationURL()
+            ])
+        );
+    }
+
+    public function getValidationURL() {
+        $data = [
+            "request_id" => $this->requestId,
+            "guid" => $this->resourceOwner->getGuid()
+        ];
+
+        $site_url = elgg_get_site_url();
+        $code = Helpers::signData($data);
+        return "{$site_url}validate_access?code={$code}";
     }
 
     public function createUser() {
@@ -102,7 +141,7 @@ class LoginHandler {
         );
 
         $db_prefix = elgg_get_config('dbprefix');
-        
+
         if ($guid) {
             update_data("UPDATE {$db_prefix}users_entity SET pleio_guid = {$pleio_guid} WHERE guid={$guid}");
 

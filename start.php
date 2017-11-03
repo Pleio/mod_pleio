@@ -43,6 +43,7 @@ function pleio_init() {
 
     elgg_register_page_handler("register", "pleio_register_page_handler");
     elgg_register_page_handler("access_requested", "pleio_access_requested_page_handler");
+    elgg_register_page_handler("validate_access", "pleio_access_validate_access_page_handler");
 
     elgg_register_action("pleio/request_access", dirname(__FILE__) . "/actions/request_access.php", "public");
     elgg_register_action("admin/pleio/process_access", dirname(__FILE__) . "/actions/admin/process_access.php", "admin");
@@ -64,16 +65,24 @@ function pleio_init() {
 
 function pleio_page_handler($page) {
     include(dirname(__FILE__) . "/pages/login.php");
+    return true;
 }
 
 function pleio_access_requested_page_handler($page) {
     $body = elgg_view_layout("walled_garden", [
-        "content" => elgg_view("pleio/access_requested"),
+        "content" => elgg_view("pleio/access_requested", [
+            "resourceOwner" => $_SESSION["pleio_resource_owner"]
+        ]),
         "class" => "elgg-walledgarden-double",
         "id" => "elgg-walledgarden-login"
     ]);
 
     echo elgg_view_page(elgg_echo("pleio:access_requested"), $body, "walled_garden");
+    return true;
+}
+
+function pleio_access_validate_access_page_handler($page) {
+    include(dirname(__FILE__) . "/pages/validate_access.php");
     return true;
 }
 
@@ -93,6 +102,7 @@ function pleio_admin_update_basic_handler($hook, $type, $value, $params) {
 
 function pleio_public_pages_handler($hook, $type, $value, $params) {
     $value[] = "action/pleio/request_access";
+    $value[] = "validate_access";
     $value[] = "access_requested";
     return $value;
 }
@@ -215,4 +225,21 @@ function pleio_get_required_profile_fields() {
     }
 
     return $return;
+}
+
+function pleio_get_domain_from_email($email) {
+    return substr(strrchr($email, "@"), 1);
+}
+
+function pleio_domain_in_whitelist($domain) {
+    $plugin_setting = elgg_get_plugin_setting("domain_whitelist", "pleio");
+    $domains = $plugin_setting ? explode(",", $plugin_setting) : [];
+
+    $domains = array_map(function($domain) { return trim($domain); }, $domains);
+
+    if (in_array($domain, $domains)) {
+        return true;
+    }
+
+    return false;
 }

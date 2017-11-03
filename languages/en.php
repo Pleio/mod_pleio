@@ -9,11 +9,15 @@ $en = array(
     "pleio:walled_garden_description" => "Access to this site is restricted to users. Log in to access the site or request membership.",
     "pleio:request_access" => "Request access",
     "pleio:request_access:description" => "To enter this site, you must request access from the admin. Click the button to request access.",
+    "pleio:validate_access" => "Validate access",
+    "pleio:validate_access:description" => "Your email domain is whitelisted for this website. Please check your details and request access. We will send you an e-mail with a link that provides direct access to the site.",
+    "pleio:validate_access:error" => "Something went wrong during validation. Please try again",
     "pleio:change_settings" => "Change settings",
     "pleio:change_settings:description" => "To change your settings please go to %s. After you changed the settings, please login again to effectuate your settings.",
     "pleio:access_requested" => "Requested access",
     "pleio:could_not_find" => "Could not find access request.",
-    "pleio:access_requested:description" => "Access is requested. You will receive an e-mail when the request is accepted.",
+    "pleio:access_requested:wait_for_approval" => "Access is requested. You will receive an e-mail when the request is accepted.",
+    "pleio:access_requested:check_email" => "Check your e-mail and follow the link to activate your account.",
     "pleio:no_requests" => "Currently there are no requests.",
     "pleio:approve" => "Approve",
     "pleio:decline" => "Decline",
@@ -25,11 +29,11 @@ $en = array(
 
         %s",
     "pleio:approved:subject" => "You are now member of: %s",
-    "pleio:approved:body" => "Hello there,
+    "pleio:approved:body" => "Hello %s,
 
 you are now member of: %s. Go to %s and login to get access.",
     "pleio:declined:subject" => "Membership request declined for: %s",
-    "pleio:declined:body" => "Hello there,
+    "pleio:declined:body" => "Hello %s,
 
 Unfortunately the site administrator of %s decided to decline your membership request. Please contact the administrator if you think this is a mistake.",
     "pleio:closed" => "Closed",
@@ -53,7 +57,15 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:users_import:step1:success" => "CSV is uploaded succesfully",
     "pleio:users_import:step1:error" => "There was an error while uploading the CSV file. Please check the file and try again.",
     "pleio:users_import:sample" => "sample",
-    "profile:gender" => "Gender"
+    "profile:gender" => "Gender",
+    "pleio:settings:domain_whitelist" => "Domain whitelist",
+    "pleio:settings:domain_whitelist:explanation" => "You can enter a comma-seperated list of domains, e.g. example.com, example2.com",
+    "pleio:validation_email:subject" => "Please validate your account for %s",
+    "pleio:validation_email:body" => "Hello %s,
+
+    You requested access to %s. Please follow this link to get direct access:
+
+    %s"
 );
 
 add_translation("en", $en);

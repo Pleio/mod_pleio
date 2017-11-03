@@ -7,6 +7,9 @@ elgg_load_js('elgg.walled_garden');
 $title = elgg_get_site_entity()->name;
 $resourceOwner = elgg_extract("resourceOwner", $vars);
 
+$subtitle = elgg_extract("title", $vars);
+$description = elgg_extract("description", $vars);
+
 $welcome = elgg_echo('walled_garden:welcome');
 $welcome .= ': <br/>' . $title;
 
@@ -25,8 +28,8 @@ $menu = elgg_view_menu('walled_garden', array(
 </div>
 <div class="elgg-col elgg-col-1of2">
     <div class="elgg-inner">
-        <h2><?php echo elgg_echo("pleio:request_access"); ?></h2>
-        <p><?php echo elgg_echo("pleio:request_access:description"); ?></p>
+        <h2><?php echo $subtitle; ?></h2>
+        <p><?php echo $description; ?></p>
         <p><b><?php echo elgg_echo("name"); ?></b><br><?php echo $resourceOwner["name"]; ?></p>
         <p><b><?php echo elgg_echo("email"); ?></b><br><?php echo $resourceOwner["email"]; ?></p>
         <?php echo elgg_view_form("pleio/request_access"); ?>
