@@ -1,4 +1,6 @@
 <?php
+global $CONFIG;
+
 $result = logout();
 
 if ($result) {
