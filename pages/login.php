@@ -7,6 +7,7 @@ if (elgg_is_logged_in()) {
 
 $site = elgg_get_site_url();
 
+$method = get_input("method");
 $code = get_input("code");
 $state = get_input("state");
 $returnto = urldecode(get_input("returnto"));
@@ -31,6 +32,10 @@ if (!isset($code)) {
     $_SESSION["oauth2state"] = $provider->getState();
 
     $header = "Location: " . $authorizationUrl;
+
+    if ($method) {
+        $header .= "&method={$method}";
+    }
 
     if ($idp && $login_credentials !== "true") {
         $header .= "&idp={$idp}";
