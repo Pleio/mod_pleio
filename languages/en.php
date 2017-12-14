@@ -47,7 +47,7 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:login_with_credentials" => "Or, login using credentials",
     "pleio:is_banned" => "Unfortunately, your account is banned. Please contact the site administrator.",
     "pleio:imported" => "Imported %s users, updated %s users and an error occured while importing for %s users.",
-    "pleio:users_import:step1:description" => "This functionality allows you to import users using a CSV file. Please choose the CSV file in the first step. Make sure the first line of the CSV contains the field names and the fields are delimited by a semicolon ;. The permissionlevel of the fields will be set to the default site level.",
+    "pleio:users_import:step1:description" => "This functionality allows you to import users using a CSV file. Please choose the CSV file in the first step. Make sure the first line of the CSV contains the field names and the fields are delimited by a semicolon ;. The permissionlevel of the fields will be set to the default site level. Please make sure the CSV is encoded with UTF-8.",
     "pleio:users_import:step2:description" => "Please link the source fields in the CSV file to the target fields in this platform. Make sure that users within the platform are ",
     "pleio:users_import:choose_field" => "Choose a field",
     "pleio:users_import:source_field" => "Source field",
@@ -57,6 +57,23 @@ Unfortunately the site administrator of %s decided to decline your membership re
     "pleio:users_import:step1:success" => "CSV is uploaded succesfully",
     "pleio:users_import:step1:error" => "There was an error while uploading the CSV file. Please check the file and try again.",
     "pleio:users_import:sample" => "sample",
+    "pleio:users_import:started_in_background" => "Import started in the background. You will receive an e-mail after completion.",
+    "pleio:users_import:email:success:subject" => "Import was a success",
+    "pleio:users_import:email:success:body" => "Dear %s,
+
+    The import of users succeeded. Here are the stats:
+
+    %s users added
+    %s users updated
+    %s users failed
+    ",
+    "pleio:users_import:email:failed:subject" => "Import failed",
+    "pleio:users_import:email:failed:body" => "Dear %s,
+
+    The import of users failed. Here is the error message of the server:
+
+    %s
+    ",
     "profile:gender" => "Gender",
     "pleio:settings:domain_whitelist" => "Domain whitelist",
     "pleio:settings:domain_whitelist:explanation" => "You can enter a comma-seperated list of domains, e.g. example.com, example2.com",

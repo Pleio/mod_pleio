@@ -47,7 +47,7 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:login_with_credentials" => "Of, log in met Pleio gebruikersnaam en wachtwoord",
     "pleio:is_banned" => "Helaas, je account is geblokkeerd. Neem contact op met de deelsitebeheerder.",
     "pleio:imported" => "%s gebruikers zijn aangemaakt, %s gebruikers zijn vernieuwd. Er was een probleem met het importeren van %s gebruikers.",
-    "pleio:users_import:step1:description" => "Met deze functionaliteit kun je gebruikers importeren door middel van een CSV bestand. Kies het CSV bestand in de eerste stap. Het CSV bestand dient een kopregel te bevatten met de veldnamen. Zorg er verder voor dat de velden gescheiden zijn door een puntkomma ;. Het toegangsniveau van de site zal ingesteld worden op het standaard site toegangsniveau.",
+    "pleio:users_import:step1:description" => "Met deze functionaliteit kun je gebruikers importeren door middel van een CSV bestand. Kies het CSV bestand in de eerste stap. Het CSV bestand dient een kopregel te bevatten met de veldnamen. Zorg er verder voor dat de velden gescheiden zijn door een puntkomma ;. Het toegangsniveau van de site zal ingesteld worden op het standaard site toegangsniveau. Zorg verder dat het CSV bestand geencodeerd is met het formaat UTF-8.",
     "pleio:users_import:step1:file" => "CSV-bestand",
     "pleio:continue" => "Ga naar de volgende stap",
     "pleio:users_import:step1:success" => "CSV-bestand succesvol ingelezen.",
@@ -57,6 +57,23 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     "pleio:users_import:target_field" => "Doelveld",
     "pleio:users_import:step2:description" => "Link nu de bronvelden uit het CSV-bestand aan de doelvelden in dit platform. Wanneer je niet bestaande gebruikers zou willen aanmaken, zorg er dan voor dat er tenminste een voor- en achternaam en emailadres aanwezig is. Wanneer deze velden niet geselecteerd worden, zullen alleen reeds bestaande accounts vernieuwd worden. Het systeem controleert of een gebruiker reeds bestaat door eerst te kijken naar het guid veld, daarna naar de gebruikersnaam en daarna naar het e-mailadres.",
     "pleio:users_import:sample" => "voorbeeld",
+    "pleio:users_import:started_in_background" => "De import is op de achtergrond gestart. Je ontvangt een mail bij afronding.",
+    "pleio:users_import:email:success:subject" => "Import afgerond",
+    "pleio:users_import:email:success:body" => "Beste %s,
+
+    Het importeren van gebruikers is geslaagd. Hier zijn de statistieken:
+
+    %s gebruikers toegevoegd
+    %s gebruikers vernieuwd
+    %s gebruikers mislukt
+    ",
+    "pleio:users_import:email:failed:subject" => "Import mislukt",
+    "pleio:users_import:email:failed:body" => "Beste %s,
+
+    Het importeren van gebruikers is mislukt. Hier is de foutmelding van de server:
+
+    %s
+    ",
     "profile:gender" => "Geslacht",
     "pleio:settings:domain_whitelist" => "Geef deze domeinen direct toegang tot de site",
     "pleio:settings:domain_whitelist:explanation" => "Je kunt hier een komma-gescheiden lijst toevoegen, bijv. voorbeeld.nl, voorbeeld2.nl",
