@@ -82,7 +82,8 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
 
     Je hebt toegang aangevraagd voor %s. Volg deze link om direct toegang te krijgen:
 
-    %s"
+    %s",
+    "pleio:no_token_available" => "Geen token beschikbaar. Log opnieuw in en probeer het nogmaals."
 );
 
 add_translation("nl", $nl);

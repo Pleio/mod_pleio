@@ -82,7 +82,8 @@ Unfortunately the site administrator of %s decided to decline your membership re
 
     You requested access to %s. Please follow this link to get direct access:
 
-    %s"
+    %s",
+    "pleio:no_token_available" => "No token available. Please try to login again."
 );
 
 add_translation("en", $en);
