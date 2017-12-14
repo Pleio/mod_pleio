@@ -38,7 +38,11 @@ class Import {
     public function generateUniqueUsername($data) {
         $email = $data["email"];
         list($name, $email) = explode("@", $email);
-        $name = trim($name);
+        $name = preg_replace("/[^a-zA-Z0-9\.]+/", "", trim($name));
+
+        while (strlen($name) < 4) {
+            $name .= "0";
+        }
 
         $hidden = access_show_hidden_entities(true);
 
@@ -48,7 +52,7 @@ class Import {
             while (get_user_by_username($name . $i)) {
                 $i++;
             }
-            
+
             $result = $name . $i;
         } else {
             $result = $name;
