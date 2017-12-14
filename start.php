@@ -23,7 +23,11 @@ function pleio_init() {
 
     elgg_unregister_action("avatar/crop");
     elgg_unregister_action("avatar/remove");
+    elgg_register_action("avatar/remove", dirname(__FILE__) . "/actions/avatar/remove.php");
+
     elgg_unregister_action("avatar/upload");
+    elgg_register_action("avatar/upload", dirname(__FILE__) . "/actions/avatar/upload.php");
+
     elgg_unregister_action("user/passwordreset");
     elgg_unregister_action("user/requestnewpassword");
 
@@ -134,7 +138,9 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
 
     $url = $CONFIG->pleio->url . "mod/profile/icondirect.php?guid={$pleio_guid}&size={$size}";
 
-    if ($entity->last_login) {
+    if ($entity->icontime) {
+        $url .= "&lastcache={$entity->icontime}";
+    } elseif ($entity->last_login) {
         $url .= "&lastcache={$entity->last_login}";
     }
 

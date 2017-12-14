@@ -55,18 +55,13 @@ if (!isset($code)) {
 
         unset($_SESSION["oauth2state"]);
 
-        // we could save these attributes for later use, not saving now...
-        /*
-        $accessToken->getToken();
-        $accessToken->getRefreshToken();
-        $accessToken->getExpires();
-        */
-
         $resourceOwner = $provider->getResourceOwner($accessToken);
         $loginHandler = new ModPleio\LoginHandler($resourceOwner);
 
         try {
-            $loginHandler->handleLogin();
+            $user = $loginHandler->handleLogin();
+            $user->setPrivateSetting("pleio_token", $accessToken->getToken());
+
             system_message(elgg_echo("loginok"));
 
             if ($returnto && pleio_is_valid_returnto($returnto)) {

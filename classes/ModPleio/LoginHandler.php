@@ -54,7 +54,7 @@ class LoginHandler {
 
             $user->save();
 
-            return true;
+            return $user;
         } catch (\LoginException $e) {
             throw new CouldNotLoginException;
         }
