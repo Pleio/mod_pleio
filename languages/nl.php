@@ -24,8 +24,8 @@ $nl = array(
     "pleio:settings:notifications_for_access_request" => "Stuur alle beheerders een notificatie wanneer iemand toegang aanvraagt voor de deelsite",
     "pleio:admin:access_request:subject" => "Nieuwe toegangsaanvraag voor %s",
     "pleio:admin:access_request:body" => "Beste %s,
-        Iemand met de naam %s heeft toegang aangevraagd tot %s.
-        Ga naar de volgende link om de aanvraag te bekijken:
+        %s heeft toegang aangevraagd tot %s.
+        Ga naar de volgende link om de aanvraag af te handelen:
 
         %s",
     "pleio:approved:subject" => "Je hebt nu toegang tot: %s",
