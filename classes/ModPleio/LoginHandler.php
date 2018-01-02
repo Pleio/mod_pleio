@@ -31,29 +31,36 @@ class LoginHandler {
             return false;
         }
 
+        if ($user->name !== $this->resourceOwner->getName()) {
+            $user->name = $this->resourceOwner->getName();
+        }
+
+        if ($user->email !== $this->resourceOwner->getEmail()) {
+            $user->email = $this->resourceOwner->getEmail();
+        }
+
+        if ($user->language !== $this->resourceOwner->getLanguage()) {
+            $user->language = $this->resourceOwner->getLanguage();
+        }
+
+        if ($this->resourceOwner->isAdmin()) {
+            if (!$user->isAdmin()) {
+                $user->makeAdmin();
+            }
+
+            if ($user->isBanned()) {
+                $ia = elgg_set_ignore_access(true);
+                unban_user($user->guid);
+                elgg_set_ignore_access($ia);
+
+                $user->banned = "no";
+            }
+        }
+
+        $user->save();
+
         try {
             login($user);
-
-            if ($user->name !== $this->resourceOwner->getName()) {
-                $user->name = $this->resourceOwner->getName();
-            }
-
-            if ($user->email !== $this->resourceOwner->getEmail()) {
-                $user->email = $this->resourceOwner->getEmail();
-            }
-
-            if ($user->language !== $this->resourceOwner->getLanguage()) {
-                $user->language = $this->resourceOwner->getLanguage();
-            }
-
-            if ($user->isAdmin() !== $this->resourceOwner->isAdmin()) {
-                if ($this->resourceOwner->isAdmin()) {
-                    $user->makeAdmin();
-                }
-            }
-
-            $user->save();
-
             return $user;
         } catch (\LoginException $e) {
             throw new CouldNotLoginException;
