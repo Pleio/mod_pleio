@@ -35,6 +35,9 @@ function pleio_init() {
     elgg_unregister_action("admin/user/delete");
     elgg_register_action("admin/user/delete", dirname(__FILE__) . "/actions/admin/user/delete.php", "admin");
 
+    elgg_unregister_action("admin/user/unban");
+    elgg_register_action("admin/user/unban", dirname(__FILE__) . "/actions/admin/user/unban.php", "admin");
+
     elgg_unregister_menu_item("page", "users:unvalidated");
     elgg_unregister_menu_item("page", "users:add");
     elgg_unregister_action("useradd");
