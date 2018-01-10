@@ -44,17 +44,20 @@ class LoginHandler {
         }
 
         if ($this->resourceOwner->isAdmin()) {
+            $ia = elgg_set_ignore_access(true);
+
             if (!$user->isAdmin()) {
                 $user->makeAdmin();
+                $user->save();
             }
 
             if ($user->isBanned()) {
-                $ia = elgg_set_ignore_access(true);
                 unban_user($user->guid);
-                elgg_set_ignore_access($ia);
-
                 $user->banned = "no";
+                $user->save();
             }
+
+            elgg_set_ignore_access($ia);
         }
 
         $user->save();
