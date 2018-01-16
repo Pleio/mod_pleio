@@ -98,7 +98,12 @@ function pleio_public_pages_handler($hook, $type, $value, $params) {
 }
 
 function pleio_user_icon_url_handler($hook, $type, $value, $params) {
-    global $CONFIG;
+    $auth = elgg_get_plugin_setting('auth', 'pleio');
+    $auth_url = elgg_get_plugin_setting('auth_url', 'pleio');
+
+    if ($auth == 'oidc') {
+        $auth_url = str_replace("openid", "", $auth_url);
+    }
 
     $entity = $params["entity"];
     $size = $params["size"];
@@ -121,7 +126,7 @@ function pleio_user_icon_url_handler($hook, $type, $value, $params) {
         $pleio_guid = 0;
     }
 
-    $url = $CONFIG->pleio->url . "mod/profile/icondirect.php?guid={$pleio_guid}&size={$size}";
+    $url = $auth_url . "mod/profile/icondirect.php?guid={$pleio_guid}&size={$size}";
 
     if ($entity->last_login) {
         $url .= "&lastcache={$entity->last_login}";
