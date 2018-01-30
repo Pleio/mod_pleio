@@ -63,7 +63,7 @@ class LoginHandler {
         $user->save();
 
         try {
-            login($user);
+            login($user, true);
             return $user;
         } catch (\LoginException $e) {
             throw new CouldNotLoginException;
