@@ -1,5 +1,8 @@
 <?php
 $nl = array(
+    "admin:server:pleio_template:env" => "Omgeving",
+    "pleio_template:type" => "Type",
+    "pleio_template:send_mail" => "Verstuur mail",
     "admin:users:access_requests" => "Aanvragen voor lidmaatschap",
     "admin:users:import" => "Importeer gebruikers",
     "pleio:site_permission" => "Toegangsniveau voor de site:",

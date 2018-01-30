@@ -1,5 +1,8 @@
 <?php
 $en = array(
+    "admin:server:pleio_template:env" => "Environment",
+    "pleio_template:type" => "Type",
+    "pleio_template:send_mail" => "Send mail",
     "admin:users:access_requests" => "Access requests",
     "admin:users:import" => "Import users",
     "pleio:site_permission" => "Permission of the site:",
