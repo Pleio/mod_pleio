@@ -31,7 +31,9 @@ $nl = array(
     "pleio:approved:subject" => "Je hebt nu toegang tot: %s",
     "pleio:approved:body" => "Beste %s,
 
-Je hebt nu toegang tot: %s. Ga naar %s om de site verder te ontdekken. Op de site gebeuren allerlei activiteiten waarvan je een melding in je eigen mailbox kunt ontvangen. Om je aan te melden ga naar deze link: %s. Hier kun je instellen welke meldingen je precies wilt ontvangen.",
+    De beheerder heeft het verzoek tot lidmaatschap goedgekeurd. Je hebt nu toegang tot %s. Volg de onderstaande link om direct naar de site te gaan:
+
+    %s",
     "pleio:declined:subject" => "Lidmaatschapsverzoek afgewezen voor: %s",
     "pleio:declined:body" => "Beste %s,
 

@@ -31,7 +31,9 @@ $en = array(
     "pleio:approved:subject" => "You are now member of: %s",
     "pleio:approved:body" => "Hello %s,
 
-you are now member of: %s. Go to %s and login to get access.",
+    The administrator approved your access request to %s. Go to this link to get access to the site:
+
+    %s",
     "pleio:declined:subject" => "Membership request declined for: %s",
     "pleio:declined:body" => "Hello %s,
 
