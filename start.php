@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__) . "/lib/background_tasks.php");
 require_once(dirname(__FILE__) . "/../../vendor/autoload.php");
 spl_autoload_register("pleio_autoloader");
 function pleio_autoloader($class) {
@@ -252,4 +253,43 @@ function pleio_domain_in_whitelist($domain) {
     }
 
     return false;
+}
+
+function pleio_schedule_in_background($function, $param) {
+    $input = base64_encode(json_encode([
+        "http_host" => $_SERVER["HTTP_HOST"],
+        "https" => $_SERVER["HTTPS"],
+        "env" => [
+            "DB_USER" => getenv("DB_USER"),
+            "DB_PASS" => getenv("DB_PASS"),
+            "DB_NAME" => getenv("DB_NAME"),
+            "DB_HOST" => getenv("DB_HOST"),
+            "DB_PREFIX" => getenv("DB_PREFIX"),
+            "DATAROOT" => getenv("DATAROOT"),
+            "PLEIO_ENV" => getenv("PLEIO_ENV"),
+            "SMTP_DOMAIN" => getenv("SMTP_DOMAIN"),
+            "BLOCK_EMAIL" => getenv("BLOCK_EMAIL"),
+            "MEMCACHE_ENABLED" => getenv("MEMCACHE_ENABLED"),
+            "MEMCACHE_PREFIX" => getenv("MEMCACHE_PREFIX"),
+            "MEMCACHE_SERVER_1" => getenv("MEMCACHE_SERVER_1"),
+            "ELASTIC_INDEX" => getenv("ELASTIC_INDEX"),
+            "ELASTIC_SERVER_1" => getenv("ELASTIC_SERVER_1")
+        ],
+        "function" => $function,
+        "param" => $param
+    ]));
+
+    $script_location = dirname(__FILE__) . "/procedures/run_function.php";
+
+    if (file_exists("/usr/local/bin/php")) {
+        $binary = "/usr/local/bin/php";
+    } else {
+        $binary = "php";
+    }
+
+    if (PHP_OS === "WINNT") {
+        pclose(popen("start /B {$binary} {$script_location} {$input}", "r"));
+    } else {
+        exec("{$binary} {$script_location} {$input} > /tmp/pleio-background.log &");
+    }
 }
