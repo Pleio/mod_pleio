@@ -3,9 +3,9 @@
 require_once(dirname(__FILE__) . "/../vendor/autoload.php");
 
 $auth = elgg_get_plugin_setting('auth', 'pleio');
-$auth_url = elgg_get_plugin_setting('auth_url', 'pleio');
-$auth_client = elgg_get_plugin_setting('auth_client', 'pleio');
-$auth_secret = elgg_get_plugin_setting('auth_secret', 'pleio');
+$auth_url = elgg_get_plugin_setting('auth_url', 'pleio', $CONFIG->pleio->url);
+$auth_client = elgg_get_plugin_setting('auth_client', 'pleio', $CONFIG->pleio->client);
+$auth_secret = elgg_get_plugin_setting('auth_secret', 'pleio', $CONFIG->pleio->secret);
 
 if (elgg_is_logged_in()) {
     forward("/");

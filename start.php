@@ -118,7 +118,7 @@ function pleio_public_pages_handler($hook, $type, $value, $params) {
 
 function pleio_user_icon_url_handler($hook, $type, $value, $params) {
     $auth = elgg_get_plugin_setting('auth', 'pleio');
-    $auth_url = elgg_get_plugin_setting('auth_url', 'pleio');
+    $auth_url = elgg_get_plugin_setting('auth_url', 'pleio', $CONFIG->pleio->url);
 
     if ($auth == 'oidc') {
         $auth_url = str_replace("openid", "", $auth_url);
