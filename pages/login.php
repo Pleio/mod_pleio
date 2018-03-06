@@ -22,7 +22,7 @@ $returnto = urldecode(get_input("returnto"));
 $login_credentials = get_input("login_credentials");
 $idp = elgg_get_plugin_setting("idp", "pleio");
 
-if (!$auth || !$auth_client || !$auth_secret || !$auth_url) {
+if (!$auth_client || !$auth_secret || !$auth_url) {
     register_error(elgg_echo("pleio:not_configured"));
     forward(REFERER);
 }
