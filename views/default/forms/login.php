@@ -7,16 +7,30 @@ $returnto = get_input("returnto");
 if ($returnto) {
     $returnto = urlencode(urldecode(get_input("returnto")));
 }
-
 ?>
 
-<p>
-    <?php echo elgg_view("output/url", array(
-            "href" => $returnto ? "/login?returnto={$returnto}" : "/login",
-            "class" => "elgg-button-submit elgg-button",
-            "text" => $idp && $idp_name ? elgg_echo("pleio:settings:login_through", [$idp_name]) : elgg_echo("login")
-    )); ?>
-</p>
+<?php if ($idp): ?>
+    <p>
+        <?php echo elgg_view("output/url", array(
+                "href" => $returnto ? "/login?returnto={$returnto}" : "/login",
+                "class" => "elgg-button-submit elgg-button",
+                "text" => $idp && $idp_name ? elgg_echo("pleio:settings:login_through", [$idp_name]) : elgg_echo("login")
+        )); ?>
+    </p>
+<?php else: ?>
+    <p>
+        <?php echo elgg_view("output/url", array(
+                "href" => $returnto ? "/login?returnto={$returnto}" : "/login",
+                "class" => "elgg-button-submit elgg-button",
+                "text" => elgg_echo("login")
+        )); ?>
+        <?php echo elgg_view("output/url", array(
+                "href" => $returnto ? "/login?returnto={$returnto}&method=register" : "/login?method=register",
+                "class" => "elgg-button-submit elgg-button",
+                "text" => elgg_echo("register")
+        )); ?>
+    </p>
+<?php endif; ?>
 
 <?php if ($login_credentials === "yes"): ?>
     <p>

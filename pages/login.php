@@ -13,6 +13,7 @@ if (elgg_is_logged_in()) {
 
 $site = elgg_get_site_url();
 
+$method = get_input("method");
 $code = get_input("code");
 $state = get_input("state");
 $returnto = urldecode(get_input("returnto"));
@@ -71,16 +72,6 @@ if ($auth == 'oidc') {
             $user->email = $email;
         }
 
-        // if ($user->language !== $this->resourceOwner->getLanguage()) {
-        //     $user->language = $this->resourceOwner->getLanguage();
-        // }
-
-        // if ($user->isAdmin() !== $this->resourceOwner->isAdmin()) {
-        //     if ($this->resourceOwner->isAdmin()) {
-        //         $user->makeAdmin();
-        //     }
-        // }
-
         $user->save();
 
         $returnto ? "{$site}login?returnto={$returnto}" : "{$site}login";
@@ -97,9 +88,9 @@ if ($auth == 'oidc') {
     }
 } else {
     $provider = new ModPleio\Provider([
-        "clientId" => $auth_client,
-        "clientSecret" => $auth_secret,
-        "url" => $auth_url,
+        "clientId" => $CONFIG->pleio->client,
+        "clientSecret" => $CONFIG->pleio->secret,
+        "url" => $CONFIG->pleio->url,
         "redirectUri" => $returnto ? "{$site}login?returnto={$returnto}" : "{$site}login"
     ]);
 
@@ -108,7 +99,11 @@ if ($auth == 'oidc') {
         $_SESSION["oauth2state"] = $provider->getState();
 
         $header = "Location: " . $authorizationUrl;
-        
+
+        if ($method) {
+            $header .= "&method={$method}";
+        }
+
         if ($idp && $login_credentials !== "true") {
             $header .= "&idp={$idp}";
         }
@@ -127,18 +122,13 @@ if ($auth == 'oidc') {
 
             unset($_SESSION["oauth2state"]);
 
-            // we could save these attributes for later use, not saving now...
-            /*
-            $accessToken->getToken();
-            $accessToken->getRefreshToken();
-            $accessToken->getExpires();
-            */
-
             $resourceOwner = $provider->getResourceOwner($accessToken);
             $loginHandler = new ModPleio\LoginHandler($resourceOwner);
 
             try {
-                $loginHandler->handleLogin();
+                $user = $loginHandler->handleLogin();
+                $user->setPrivateSetting("pleio_token", $accessToken->getToken());
+
                 system_message(elgg_echo("loginok"));
 
                 if ($returnto && pleio_is_valid_returnto($returnto)) {
@@ -150,14 +140,26 @@ if ($auth == 'oidc') {
                 register_error(elgg_echo("pleio:is_banned"));
                 forward("/");
             } catch (ModPleio\Exceptions\ShouldRegisterException $e) {
+                if (ModPleio\Helpers::emailInWhitelist($resourceOwner->getEmail())) {
+                    $title = elgg_echo("pleio:validate_access");
+                    $description = elgg_echo("pleio:validate_access:description");
+                } else {
+                    $title = elgg_echo("pleio:request_access");
+                    $description = elgg_echo("pleio:request_access:description");
+                }
+
                 $_SESSION["pleio_resource_owner"] = $resourceOwner->toArray();
+
                 $body = elgg_view_layout("walled_garden", [
                     "content" => elgg_view("pleio/request_access", [
+                        "title" => $title,
+                        "description" => $description,
                         "resourceOwner" => $resourceOwner->toArray()
                     ]),
                     "class" => "elgg-walledgarden-double",
                     "id" => "elgg-walledgarden-login"
                 ]);
+
                 echo elgg_view_page(elgg_echo("pleio:request_access"), $body, "walled_garden");
                 return true;
             } catch (\RegistrationException $e) {

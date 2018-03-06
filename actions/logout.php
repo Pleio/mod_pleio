@@ -1,4 +1,9 @@
 <?php
+
+if (!elgg_is_logged_in()) {
+    forward("/");
+}
+
 $auth = elgg_get_plugin_setting('auth', 'pleio');
 $auth_url = elgg_get_plugin_setting('auth_url', 'pleio');
 
@@ -7,7 +12,6 @@ if ($auth == 'oidc') {
 }
 
 $result = logout();
-
 if ($result) {
     forward($auth_url . "action/logout");
 } else {

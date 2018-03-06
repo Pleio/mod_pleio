@@ -1,6 +1,10 @@
 <?php
-
 $forward_url = REFERER;
+
+$directory = elgg_get_config("dataroot") . 'tmp/';
+if(!file_exists($directory)) {
+    mkdir($directory, 0755, true);
+}
 
 if(($csv = get_uploaded_file("csv")) && !empty($csv)){
     $tmp_location = $_FILES["csv"]["tmp_name"];
@@ -10,11 +14,11 @@ if(($csv = get_uploaded_file("csv")) && !empty($csv)){
         $sample = fgetcsv($fh, 0, ";");
 
         if ($columns && $sample) {
-            $new_location = tempnam(sys_get_temp_dir(), "import_" . get_config("site_guid"));
-            move_uploaded_file($tmp_location, $new_location);
+            $location =  $directory . get_config("site_guid") . '.csv';
+            move_uploaded_file($tmp_location, $location);
 
             $_SESSION["import"] = array(
-                "location" => $new_location,
+                "location" => $location,
                 "columns" => $columns,
                 "sample" => $sample
             );
