@@ -223,28 +223,6 @@ function pleio_get_required_profile_fields() {
 }
 
 elgg_ws_expose_function(
-    "pleio.userexists",
-    "pleio_check_user_exists",
-    array(
-        "user" => array('type' => 'string', 'required' => true)
-    ),
-    'Checks if a user exists based on email.',
-    'POST',
-    false,
-    false
-);
-
-function pleio_check_user_exists($user) {
-    $user_entity = get_user_by_email($user)[0];
-
-    if (!$user_entity) {
-        return false;
-    }
-
-    return ($user_entity instanceof ElggUser);
-}
-
-elgg_ws_expose_function(
     "pleio.verifyuser",
     "pleio_verify_user_creds",
     array(
@@ -261,7 +239,7 @@ function pleio_verify_user_creds($user, $password) {
     $user_entity = get_user_by_email($user)[0];
 
     if (!$user_entity) {
-        return false;
+        return json_encode(false);
     }
 
     $username = $user_entity->username;
