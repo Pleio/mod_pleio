@@ -1,6 +1,8 @@
 <?php
 namespace ModPleio;
 
+require_once(dirname(__FILE__) . "/../../vendor/autoload.php");
+
 use InvalidArgumentException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Provider\AbstractProvider;
