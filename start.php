@@ -52,6 +52,8 @@ function pleio_init() {
 
     elgg_register_page_handler("access_requested", "pleio_access_requested_page_handler");
     elgg_register_page_handler("validate_access", "pleio_access_validate_access_page_handler");
+    elgg_register_page_handler("robots.txt", "pleio_robots_page_handler");
+    elgg_register_page_handler("sitemap.xml", "pleio_sitemap_page_handler");
 
     elgg_register_action("pleio/request_access", dirname(__FILE__) . "/actions/request_access.php", "public");
     elgg_register_action("admin/pleio/process_access", dirname(__FILE__) . "/actions/admin/process_access.php", "admin");
@@ -97,6 +99,16 @@ function pleio_access_validate_access_page_handler($page) {
 function pleio_register_page_handler($page) {
     forward("/login?method=register");
 
+    return true;
+}
+
+function pleio_robots_page_handler($page) {
+    include(dirname(__FILE__) . "/pages/robots.php");
+    return true;
+}
+
+function pleio_sitemap_page_handler($page) {
+    include(dirname(__FILE__) . "/pages/sitemap.php");
     return true;
 }
 

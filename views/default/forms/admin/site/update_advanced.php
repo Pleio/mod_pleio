@@ -64,6 +64,15 @@ $form_body .= elgg_view("input/checkboxes", array(
 $form_body .= "</div>";
 
 
+$form_body .= "<div>";
+$form_body .= elgg_view("input/checkboxes", array(
+    "options" => array(elgg_echo("pleio:enable_frontpage_indexing") => 1),
+    "name" => "enable_frontpage_indexing",
+    "value" => elgg_get_config('enable_frontpage_indexing')
+));
+$form_body .= "</div>";
+
+
 $strength = _elgg_get_site_secret_strength();
 $current_strength = elgg_echo('site_secret:current_strength');
 $strength_text = elgg_echo("site_secret:strength:$strength");
@@ -93,6 +102,5 @@ $form_body .= elgg_view('input/hidden', array('name' => 'settings', 'value' => '
 $form_body .= '<div class="elgg-foot">';
 $form_body .= elgg_view('input/submit', array('value' => elgg_echo("save")));
 $form_body .= '</div>';
-
 
 echo $form_body;

@@ -59,6 +59,13 @@ if ($site = elgg_get_site_entity()) {
         set_config('disable_api', 'disabled', $site->getGUID());
     }
 
+    $enable_frontpage_indexing = get_input('enable_frontpage_indexing');
+    if ($enable_frontpage_indexing) {
+        set_config('enable_frontpage_indexing', 1, $site->getGUID());
+    } else {
+        unset_config('enable_frontpage_indexing', $site->getGUID());
+    }
+
     $regenerate_site_secret = get_input('regenerate_site_secret', false);
     if ($regenerate_site_secret) {
         init_site_secret();
