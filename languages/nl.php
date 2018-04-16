@@ -90,7 +90,9 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     Je hebt toegang aangevraagd voor %s. Volg deze link om direct toegang te krijgen:
 
     %s",
-    "pleio:no_token_available" => "Geen token beschikbaar. Log opnieuw in en probeer het nogmaals."
+    "pleio:no_token_available" => "Geen token beschikbaar. Log opnieuw in en probeer het nogmaals.",
+    "pleio:avatar:upload:server_error" => "Serverfout. Probeer het opnieuw.",
+    "pleio:avatar:upload:user_error" => "Kan de profiel niet vernieuwen vanwege een verlopen sessie. Waarschijnlijk werkt het weer wanneer je uitlogt, opnieuw inlogt en het dan nog eens probeert."
 );
 
 add_translation("nl", $nl);

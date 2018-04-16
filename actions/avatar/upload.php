@@ -36,7 +36,10 @@ try {
         ]
     ]);
 } catch (GuzzleHttp\Exception\ServerException $e) {
-	register_error(elgg_echo('avatar:upload:fail'));
+	register_error(elgg_echo('pleio:avatar:upload:server_error'));
+	forward(REFERER);
+} catch (GuzzleHttp\Exception\ClientException $e) {
+	register_error(elgg_echo('pleio:avatar:upload:user_error'));
 	forward(REFERER);
 }
 

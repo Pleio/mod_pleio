@@ -90,7 +90,9 @@ Unfortunately the site administrator of %s decided to decline your membership re
     You requested access to %s. Please follow this link to get direct access:
 
     %s",
-    "pleio:no_token_available" => "No token available. Please try to login again."
+    "pleio:no_token_available" => "No token available. Please try to login again.",
+    "pleio:avatar:upload:server_error" => "Server error. Please try again.",
+    "pleio:avatar:upload:user_error" => "Could not update the avatar due to an expired session. Please logout and login again and try again."
 );
 
 add_translation("en", $en);
