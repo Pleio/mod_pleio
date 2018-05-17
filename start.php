@@ -36,6 +36,9 @@ function pleio_init() {
     elgg_unregister_action("admin/user/delete");
     elgg_register_action("admin/user/delete", dirname(__FILE__) . "/actions/admin/user/delete.php", "admin");
 
+    elgg_unregister_action("admin/user/ban");
+    elgg_register_action("admin/user/ban", dirname(__FILE__) . "/actions/admin/user/ban.php", "admin");
+
     elgg_unregister_action("admin/user/unban");
     elgg_register_action("admin/user/unban", dirname(__FILE__) . "/actions/admin/user/unban.php", "admin");
 
@@ -63,6 +66,11 @@ function pleio_init() {
     elgg_register_plugin_hook_handler("entity:icon:url", "user", "pleio_user_icon_url_handler");
 
     elgg_register_admin_menu_item("administer", "access_requests", "users");
+
+    elgg_register_admin_menu_item("administer", "all", "users");
+    if (elgg_in_context("admin")) {
+        elgg_register_plugin_hook_handler("register", "menu:entity", "pleio_template_user_setup_menu", 502);
+    }
 
     elgg_register_admin_menu_item("administer", "import", "users");
     elgg_register_action("admin/user/import_step1", dirname(__FILE__) . "/actions/admin/user/import_step1.php", "admin");

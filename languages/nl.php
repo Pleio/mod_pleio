@@ -92,7 +92,14 @@ Helaas heeft de site-beheerder van %s je lidmaatschapsverzoek afgewezen. Indien 
     %s",
     "pleio:no_token_available" => "Geen token beschikbaar. Log opnieuw in en probeer het nogmaals.",
     "pleio:avatar:upload:server_error" => "Serverfout. Probeer het opnieuw.",
-    "pleio:avatar:upload:user_error" => "Kan de profiel niet vernieuwen vanwege een verlopen sessie. Waarschijnlijk werkt het weer wanneer je uitlogt, opnieuw inlogt en het dan nog eens probeert."
+    "pleio:avatar:upload:user_error" => "Kan de profiel niet vernieuwen vanwege een verlopen sessie. Waarschijnlijk werkt het weer wanneer je uitlogt, opnieuw inlogt en het dan nog eens probeert.",
+    'admin:users:all' => 'Alle gebruikers',
+    'members:search' => 'Zoek gebruiker',
+    'admin:users:edit' => 'Wijzig gebruiker',
+    'admin:profile:details' => 'Profiel details',
+    'admin:profile:edit' => 'Wijzig profiel',
+    'view_profile' => 'Bekijk profiel',
+    'users' => 'Gebruikers'
 );
 
 add_translation("nl", $nl);
