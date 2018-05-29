@@ -8,6 +8,7 @@ $en = array(
     "admin:administer_utilities:repair" => "Repair tasks",
     "admin:administer_utilities:repair:description" => "In this panel you can repair certain problems with Elgg.",
     "pleio:hidden_groups" => "Hidden groups",
+    "pleio:broken_plugins" => "Broken plugins",
     "pleio:site_permission" => "Permission of the site:",
     "pleio:not_configured" => "The Pleio login plugin is not configured.",
     "pleio:registration_disabled" => "Registration is disabled, create an account on Pleio.",

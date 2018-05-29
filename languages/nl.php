@@ -8,6 +8,7 @@ $nl = array(
     "admin:administer_utilities:repair" => "Repareer taken",
     "admin:administer_utilities:repair:description" => "In dit paneel kun je verschillende problemen met Elgg oplossen.",
     "pleio:hidden_groups" => "Verborgen groepen",
+    "pleio:broken_plugins" => "Kapotte plugins",
     "pleio:site_permission" => "Toegangsniveau voor de site:",
     "pleio:not_configured" => "De Pleio login plugin is niet geconfigureerd.",
     "pleio:registration_disabled" => "Registratie is gedeactiveerd. Maak een account aan op Pleio.",

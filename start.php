@@ -43,6 +43,7 @@ function pleio_init() {
     elgg_register_action("admin/user/unban", dirname(__FILE__) . "/actions/admin/user/unban.php", "admin");
 
     elgg_register_action("admin/repair_hidden_groups", dirname(__FILE__) . "/actions/admin/repair_hidden_groups.php", "admin");
+    elgg_register_action("admin/repair_broken_plugins", dirname(__FILE__) . "/actions/admin/repair_broken_plugins.php", "admin");
 
     elgg_unregister_menu_item("page", "users:unvalidated");
     elgg_unregister_menu_item("page", "users:add");
