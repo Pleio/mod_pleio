@@ -42,6 +42,9 @@ function pleio_init() {
     elgg_unregister_action("admin/user/unban");
     elgg_register_action("admin/user/unban", dirname(__FILE__) . "/actions/admin/user/unban.php", "admin");
 
+    elgg_register_action("admin/repair_hidden_groups", dirname(__FILE__) . "/actions/admin/repair_hidden_groups.php", "admin");
+    elgg_register_action("admin/repair_broken_plugins", dirname(__FILE__) . "/actions/admin/repair_broken_plugins.php", "admin");
+
     elgg_unregister_menu_item("page", "users:unvalidated");
     elgg_unregister_menu_item("page", "users:add");
     elgg_unregister_action("useradd");
@@ -72,7 +75,9 @@ function pleio_init() {
         elgg_register_plugin_hook_handler("register", "menu:entity", "pleio_template_user_setup_menu", 502);
     }
 
+    elgg_register_admin_menu_item("administer", "repair", "administer_utilities");
     elgg_register_admin_menu_item("administer", "import", "users");
+
     elgg_register_action("admin/user/import_step1", dirname(__FILE__) . "/actions/admin/user/import_step1.php", "admin");
     elgg_register_action("admin/user/import_step2", dirname(__FILE__) . "/actions/admin/user/import_step2.php", "admin");
 

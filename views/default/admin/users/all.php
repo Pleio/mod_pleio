@@ -5,16 +5,25 @@ echo elgg_view_form("admin/users/search", [
     "disable_security" => true // not a transactional request
 ]);
 
-$q = get_input("q");
 $offset = (int) get_input("offset", 0);
 $limit = (int) get_input("limit", 10);
 $site = elgg_get_site_entity();
+
+$q = get_input("q");
+$q = sanitise_string($q);
+
+$dbprefix = elgg_get_config("dbprefix");
 
 $options = [
     "type" => "user",
     "offset" => $offset,
     "limit" => $limit,
-    "query" => $q
+    "joins" => [
+        "JOIN {$dbprefix}users_entity ue ON e.guid = ue.guid"
+    ],
+    "wheres" => [
+        "ue.username LIKE '{$q}%' OR ue.name LIKE '{$q}%'"
+    ]
 ];
 
 $users = elgg_get_entities_from_relationship($options);
