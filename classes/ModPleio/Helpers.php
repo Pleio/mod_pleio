@@ -32,7 +32,11 @@ class Helpers {
 
         // make sure the user cannot login any more, also not with the "rememberme" cookie
         $user->ban("banned");
-        $user->removeAdmin();
+
+        if ($user->isAdmin()) {
+            $user->removeAdmin();
+        }
+
         $user->save();
 
         $result = Helpers::removeAllRelationships($user);
